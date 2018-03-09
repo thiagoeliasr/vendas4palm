@@ -1,29 +1,29 @@
 VENDAS 4 PALM
 =============
 
-INSTALA«√O
+INSTALA√á√ÉO
 ==========
 
-Para instalar esta aplicaÁ„o, vocÍ ter· de instalar o execut·vel (*.prc) e as tabelas (*.pdb).
-O execut·vel ser· de acordo com o seu dispositivo.
+Para instalar esta aplica√ß√£o, voc√™ ter√° de instalar o execut√°vel (*.prc) e as tabelas (*.pdb).
+O execut√°vel ser√° de acordo com o seu dispositivo.
 Para dispositivos de 65536 cores como Tungsten | E, Tungsten | T3, Zire 71, Zire 72, instale
-o execut·vel Vendas_HiColor.prc e todos os arquivos *.pdb.
-(A instalaÁ„o poder· ser feita com seu Quick Install, ou qualquer programa que faÁa este serviÁo.)
-Se vocÍ tiver um palm com 256 cores, como o Palm IIIc, instale o execut·vel Vendas_256c.prc e todos
+o execut√°vel Vendas_HiColor.prc e todos os arquivos *.pdb.
+(A instala√ß√£o poder√° ser feita com seu Quick Install, ou qualquer programa que fa√ßa este servi√ßo.)
+Se voc√™ tiver um palm com 256 cores, como o Palm IIIc, instale o execut√°vel Vendas_256c.prc e todos
 os outros arquivos *.pdb
-Caso vocÍ tenha um Palm que n„o suporte cores, como o Zire 21, Palm V, etc, instale o execut·vel
+Caso voc√™ tenha um Palm que n√£o suporte cores, como o Zire 21, Palm V, etc, instale o execut√°vel
 Vendas_bw.prc e todos os outros arquivos *.prc
 
 
-LICEN«A
+LICEN√áA
 ==========
-Este software foi desenvolvido com fins educacionais, e È distribuÌdo como Freeware.
-Estou disponibilizando atÈ mesmo o cÛdigo fonte sob a licensa GPL
-no site www.thiagoelias.cjb.net, assim como faÁo com todos os meus projetos.
+Este software foi desenvolvido com fins educacionais, e √© distribu√≠do como Freeware.
+C√≥digo fonte dispon√≠vel no github.
+https://github.com/thiagoeliasr/vendas4palm
 
 
 AUTOR
 ==========
 Thiago Elias Rezende Silva
-Sistemas de InformaÁ„o
-UNIUBE: Uberaba - MG
+Especialista em Desenvolvimento e Gest√£o de Sistemas
+https://thiagoelias.org
