@@ -1,0 +1,256 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmRelData
+  Segment = main
+  Extends = Form
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = "Relatório por Intervalo de Datas:\r\n========================\r\nAo entrar nesse formulário, automáticamente o sistema irá exibir as vendas realizadas no dia de hoje. Se não houver nenhuma venda, não haverá resultados.\r\n\r\nPara fazer uma busca por data, clique em Selecione em Data de inicio, e escolha a data. Em seguida, clique: Selecione em Data Fim, e escolha a data desejada.\r\nNOTA: A Data inicio deve ser sempre menor que a data fim. A data início também não pode ser igual à data fim.\r\n\r\nPara exportar os resultados de sua pesquisa p/ o Memorando, clique em Exportar e aguarde a confirmação de que o processo foi concluído com sucesso.\r\nNOTA: O tempo de processamento vai depender da velocidade do seu processador, e da quantidade de registro a serem exportados."
+  Locked = False
+  begin Selector
+    Name = Selector1
+    Left = 50
+    Top = 111
+    Width = 53
+    Height = 12
+    Visible = True
+    Anchors = 0
+    AnchorLeft = True
+    Text = "Selecione"
+    Font = "Bold"
+    Mode = 1
+    Format = "dd/mm/yyyy"
+    DialogTitle = "Data Inicial"
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 4
+    Top = 112
+    Anchors = 0
+    Visible = True
+    Caption = "Data Início:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 2
+    Top = 142
+    Width = 46
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 53
+    Top = 142
+    Width = 48
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Detalhes"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin GridEx
+    Name = Grid1
+    Left = 1
+    Top = 23
+    Width = 145
+    Height = 82
+    Columns = "AwDsAQUAOABGAAoAAAAAAAAAAAAoAAMABQA4ACgACgAAAAAAAAAAACgAAwAFADgAKAAKAAAAAAAAAAAAKAADAA=="
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 1
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 148
+    Top = 24
+    Width = 7
+    Height = 91
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = Button3
+    Left = 122
+    Top = 122
+    Width = 30
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "OK"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 4
+    Top = 127
+    Anchors = 0
+    Visible = True
+    Caption = "Data Fim:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Selector
+    Name = Selector2
+    Left = 50
+    Top = 127
+    Width = 53
+    Height = 12
+    Visible = True
+    Anchors = 0
+    AnchorLeft = True
+    Text = "Selecione"
+    Font = "Bold"
+    Mode = 1
+    Format = "dd/mm/yyyy"
+    DialogTitle = "Data Final"
+    Tag = ""
+  end
+  begin Button
+    Name = btnexp
+    Left = 106
+    Top = 142
+    Width = 48
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Exportar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+end
+Private db1 as new vendas
+Public nmprod as String
+Public vlprod as Double
+Public cliente as String
+Public qtprod as Integer
+Public dtvenda as String
+Public flag as Boolean
+
+Private Sub Form_Load()
+		selector1.Date = date
+		selector2.Date = (date + 1)
+		db1.OpenRecordSet "dt_venda >= '" & selector1.Date & "' and dt_venda <= '"& selector2.Date &"'",hbModeOpenAlways+hbModeReadWrite
+		'db1.OpenTable hbModeReadOnly
+		Grid1.Populate db1
+		flag = false
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+	db1.LookupUniqueID lItemData
+
+	vValue(0) = db1.nmprod
+	vValue(1) = db1.qtprod
+	vValue(2) = db1.dt_venda
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+	db1.LookupUniqueID lItemData
+
+	nmprod = db1.nmprod
+	vlprod = db1.vlprod
+	cliente = db1.cliente
+	qtprod = db1.qtprod
+	dtvenda = db1.dt_venda
+	flag = true
+
+	'db1.Close
+End Sub
+
+
+Private Sub Button3_Click()
+
+	Grid1.Clear
+
+	if (selector2.Date <= selector1.Date) Then
+		MsgBox("Data Final é menor ou igual a Data inicial.. Por Favor Corrija..")
+	else
+
+		db1.OpenTable hbModeReadOnly
+		db1.MoveFirst
+		db1.OpenRecordSet "dt_venda >= '" & selector1.Date & "' and dt_venda <= '"& selector2.Date &"'",hbModeOpenAlways+hbModeReadWrite
+		Grid1.Populate db1
+
+	end if
+End Sub
+
+Private Sub Button1_Click()
+  dim rel as new frmRel
+	db1.Close
+	rel.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Button2_Click()
+	if (flag = false) Then
+		MsgBox ("Você deve selecionar um produto na tabela..")
+	else
+		dim mostra as new frmRelMost
+		mostra.nmprod = nmprod
+		mostra.cliente = cliente
+		mostra.dtvenda = dtvenda
+		mostra.qtd = qtprod
+		mostra.vlvenda = vlprod
+		mostra.voltar = 3
+		mostra.Show hbFormModeless+hbFormGoto
+	end if
+End Sub
+
+Private Sub btnexp_Click()
+	Dim cMemo as new clsMemo
+	Dim clientes as new clientes
+	Dim n as Long
+
+	clientes.OpenTable hbModeReadOnly
+
+	db1.MoveFirst
+	while (db1.EOF = false)
+		cMemo.OpenDataBase hbModeReadWrite
+		'Encontrando o registro
+		clientes.MoveFirst
+		while (clientes.id <> db1.cliente)
+			clientes.MoveNext
+		wend
+
+		n = cMemo.RecordCount
+		Call cMemo.NewMemo()
+		cMemo.Memo = "Venda "&n&" :: Data: "&db1.dt_venda&"\n\nProduto: "&db1.nmprod&"\nCliente: "&clientes.nmcliente&"\nValor: "&db1.vlprod&"\nQTD: "&db1.qtprod&"\n\nTOTAL: "&db1.vlprod * db1.qtprod
+		Call cMemo.SaveMemo(True)
+		db1.MoveNext
+	wend
+	Call MsgBox("O resultado da busca foi exportado p/ o Memorando com Sucesso...",hbMsgBoxDoneOnly+hbMsgBoxInformation,"CONCLUIDO")
+
+	clientes.close
+End Sub

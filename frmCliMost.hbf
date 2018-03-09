@@ -1,0 +1,552 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmCliMost
+  Segment = main
+  Extends = clsFormMenu
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 6
+    Top = 18
+    Anchors = 0
+    Visible = True
+    Caption = "Nome:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 16
+    Top = 31
+    Anchors = 0
+    Visible = True
+    Caption = "End:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 3
+    Top = 59
+    Anchors = 0
+    Visible = True
+    Caption = "Cidade:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label4
+    Left = 20
+    Top = 71
+    Anchors = 0
+    Visible = True
+    Caption = "UF:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label5
+    Left = 11
+    Top = 94
+    Anchors = 0
+    Visible = True
+    Caption = "Fone:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label6
+    Left = 54
+    Top = 123
+    Anchors = 0
+    Visible = True
+    Caption = ":: Comentários ::"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Field
+    Name = fldnome
+    Left = 38
+    Top = 17
+    Width = 119
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = fldend
+    Left = 38
+    Top = 30
+    Width = 111
+    Height = 26
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 300
+    Align = 0
+    Scrollbar = "Scrollbar2"
+    Tag = ""
+  end
+  begin Field
+    Name = fldcid
+    Left = 39
+    Top = 57
+    Width = 118
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Popup
+    Name = Popup1
+    Left = 39
+    Top = 70
+    Width = 31
+    Height = 12
+    Anchors = 0
+    Visible = True
+    AnchorLeft = True
+    Text = "popup"
+    Font = "Standard"
+    VisibleItems = 10
+    Sorted = 0
+    Tag = ""
+  end
+  begin Field
+    Name = fldfone
+    Left = 38
+    Top = 93
+    Width = 118
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = fldcom
+    Left = 40
+    Top = 133
+    Width = 112
+    Height = 27
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 500
+    Align = 0
+    Scrollbar = "Scrollbar1"
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 153
+    Top = 136
+    Width = 7
+    Height = 24
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 3
+    Top = 125
+    Width = 32
+    Height = 14
+    Anchors = 0
+    Visible = True
+    Text = "Alterar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 3
+    Top = 143
+    Width = 32
+    Height = 14
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Graffiti
+    Name = Graffiti1
+    Left = 45
+    Top = 2
+    Anchors = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label7
+    Left = 16
+    Top = 83
+    Anchors = 0
+    Visible = True
+    Caption = "CEP:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldcep
+    Left = 38
+    Top = 81
+    Width = 117
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label8
+    Left = 5
+    Top = 107
+    Anchors = 0
+    Visible = True
+    Caption = "E-mail:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldmail
+    Left = 38
+    Top = 106
+    Width = 118
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar2
+    Left = 152
+    Top = 29
+    Width = 7
+    Height = 27
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = bt_first
+    Left = 81
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = "<<"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_prior
+    Left = 101
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = "<"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_next
+    Left = 121
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = ">"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_last
+    Left = 141
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = ">>"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin MenuBar
+    begin MenuTitle
+      Caption = "Editar"
+      begin MenuItem
+        Name = mnucut
+        Caption = "Recortar"
+        Shortcut = "X"
+      end
+      begin MenuItem
+        Name = mnuCopy
+        Caption = "Copiar"
+        Shortcut = "C"
+      end
+      begin MenuItem
+        Name = mnuPaste
+        Caption = "Colar"
+        Shortcut = "P"
+      end
+      begin MenuItem
+        Name = mnuSelect
+        Caption = "Selecionar Tudo"
+        Shortcut = "S"
+      end
+      begin MenuSeparator
+      end
+      begin MenuItem
+        Name = mnuKeyboard
+        Caption = "Teclado Virtual"
+        Shortcut = "K"
+      end
+      begin MenuItem
+        Name = mnuGraffiti
+        Caption = "Ajuda do Grafiti"
+        Shortcut = "G"
+      end
+    end
+  end
+end
+'Alterações realizadas em 14/07/2005
+'Desc: Funcinalidade deste formulário.
+'Autor: Thiago Elias
+'e-mail: a5031810@yahoo.com.br
+
+Public nmcliente as String
+Public endcliente as String
+Public cidcliente as String
+Public ufcliente as String
+Public fonecliente as String
+Public comentcli as String
+Public cliid as Long
+Public cepcli as String
+Public position as Long
+Public emailcli as String
+Public db1 as new clientes
+
+Private Sub atribui()
+  position = db1.AbsolutePosition
+	fldnome.Text = db1.nmcliente
+	fldend.Text = db1.endereco
+	fldcid.Text = db1.cidade
+	fldfone.Text = db1.telefone
+	Popup1.Text = db1.estado
+	fldcep.Text = db1.cep
+	fldcom.Text = db1.comentario
+	fldmail.Text = db1.email
+End Sub
+
+Private Sub Form_Load()
+  db1.OpenTable hbmodeWrite
+	Popup1.AddItem ufcliente,0
+	Popup1.AddItem "AC",1
+	Popup1.AddItem "AL",2
+	Popup1.AddItem "AP",3
+	Popup1.AddItem "AM",4
+	Popup1.AddItem "BA",5
+	Popup1.AddItem "CE",6
+	Popup1.AddItem "DF",7
+	Popup1.AddItem "ES",8
+	Popup1.AddItem "GO",9
+	Popup1.AddItem "MA",10
+	Popup1.AddItem "MT",11
+	Popup1.AddItem "MS",12
+	Popup1.AddItem "MG",13
+	Popup1.AddItem "PA",14
+	Popup1.AddItem "PB",15
+	Popup1.AddItem "PR",16
+	Popup1.AddItem "PE",17
+	Popup1.AddItem "PI",18
+	Popup1.AddItem "RJ",19
+	Popup1.AddItem "RN",20
+	Popup1.AddItem "RS",21
+	Popup1.AddItem "RO",22
+	Popup1.AddItem "RR",23
+	Popup1.AddItem "SC",24
+	Popup1.AddItem "SP",25
+	Popup1.AddItem "SE",26
+	Popup1.AddItem "TO",27
+	Popup1.ListIndex=0
+	Popup1.Redraw=True
+
+	fldnome.Text = nmcliente
+	fldend.Text = endcliente
+	fldcid.Text = cidcliente
+	fldcep.Text = cepcli
+	fldfone.Text = fonecliente
+	fldcom.Text = comentcli
+	fldmail.Text = emailcli
+
+
+End Sub
+Private Sub Button2_Click()
+	dim volta as new frmCliRem
+	db1.Close
+	volta.Show hbFormModal+hbFormGoto
+End Sub
+
+
+Private Sub Button1_Click()
+	dim volta as new frmCliRem
+
+	db1.OpenTable hbmodeWrite
+
+	db1.LookupUniqueID cliid
+	db1.Edit
+	db1.UniqueID = cliid
+	db1.nmcliente = Trim(fldnome.Text)
+	db1.endereco = Trim(fldend.Text)
+	db1.cidade = Trim(fldcid.Text)
+	db1.estado = Trim(Popup1.Text)
+	db1.telefone = Trim(fldfone.Text)
+	db1.comentario = Trim(fldcom.Text)
+	db1.cep = Trim(fldcep.Text)
+	db1.email = Trim(fldmail.Text)
+
+	db1.Update
+	db1.Close
+
+	MsgBox("Os Dados do cliente foram alterados com sucesso...")
+	volta.Show hbFormModal+hbFormGoto
+
+End Sub
+
+Private Sub bt_first_Click()
+	db1.OpenTable hbModeReadOnly
+	db1.MoveFirst
+	Call atribui()
+End Sub
+
+
+Private Sub bt_prior_Click()
+	db1.OpenTable hbModeReadOnly
+	db1.AbsolutePosition = position
+  db1.MovePrevious
+  If db1.BOF Then
+    db1.MoveFirst
+  Else
+    call atribui()
+  End If
+	position = db1.AbsolutePosition
+	cliid = db1.UniqueID
+	'db.Close
+End Sub
+
+
+Private Sub bt_next_Click()
+	db1.OpenTable hbModeOpenAlways+hbModeReadWrite
+	db1.AbsolutePosition = position
+  db1.MoveNext
+  If db1.EOF Then
+    db1.MoveLast
+  Else
+    Call atribui()
+  End If
+	position = db1.AbsolutePosition
+	cliid = db1.UniqueID
+	'db.Close
+
+End Sub
+
+
+Private Sub bt_last_Click()
+	db1.OpenTable hbModeReadOnly
+	db1.MoveLast
+	Call atribui()
+End Sub
+
+Private Sub Form_Unload()
+	db1.Close
+End Sub

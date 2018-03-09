@@ -1,0 +1,84 @@
+' Peter Holmes Consulting HB++ Class file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Class
+  Name = clsFormMenu
+  Segment = main
+  Extends = Form
+  Instantiable = False
+  Extendable = True
+  Clonable = False
+end
+Public mnuCut 			as MenuItem
+Public mnuCopy 			as MenuItem
+Public mnuPaste 		as MenuItem
+Public mnuSelect 		as MenuItem
+Public mnuKeyboard 	as MenuItem
+Public mnuGraffiti 	as MenuItem
+
+
+'---------------------------- Handles Edit > Cut ---------------
+
+Private Sub mnuCut_Click()
+	Dim f as Field
+	'Get the focus Field
+	Set f=Focus
+	'if a field have the focus, then invoke the Cut method else beep
+	If f Is Nothing Then SystemSound Else f.Cut
+End Sub
+
+'---------------------------- Handles Edit > Copy --------------
+
+Private Sub mnuCopy_Click()
+	Dim f as Field
+	'Get the focus Field
+	Set f=Focus
+	'if a field have the focus, then invoke the Copy method else beep
+	If f Is Nothing Then SystemSound Else f.Copy
+End Sub
+
+'---------------------------- Handles Edit > Paste -------------
+
+Private Sub mnuPaste_Click()
+	Dim f as Field
+	'Get the focus Field
+	Set f=Focus
+	'if a field have the focus, then invoke the Paste method else beep
+	If f Is Nothing Then SystemSound Else f.Paste
+End Sub
+
+'---------------------------- Handles Edit > Select All --------
+
+Private Sub mnuSelect_Click()
+	Dim f as Field
+	'Get the focus Field
+	Set f=Focus
+	'if a field have the focus, then select all else beep
+	If f Is Nothing Then
+		SystemSound
+	Else
+		f.SelStart=0
+		f.SelLength=32767
+	End If
+End Sub
+
+'---------------------------- Handles Edit > Keyboard ----------
+
+Private Sub mnuKeyboard_Click()
+	Dim f as Field
+	'Get the focus Field
+	Set f=Focus
+	'if a field have the focus, then call the virtual keyboard else beep
+	If f Is Nothing Then SystemSound Else SystemDialog hbSysKeyboardDefault
+End Sub
+
+'---------------------------- Handles Edit > Graffiti ----------
+
+Private Sub mnuGraffiti_Click()
+	Dim f as Field
+	'Get the focus Field
+	Set f=Focus
+	'if a field have the focus, then call the graffiti help dialog box else beep
+	If f Is Nothing Then SystemSound Else SystemDialog hbSysGraffitiReference
+End Sub

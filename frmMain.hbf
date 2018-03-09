@@ -1,0 +1,171 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmMain
+  Segment = main
+  Extends = Form
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Picture
+    Name = Picture1
+    Left = 0
+    Top = 0
+    Anchors = 0
+    Visible = True
+    Image = "lowres"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 33
+    Top = 30
+    Anchors = 0
+    Visible = True
+    Caption = "www.thiagoelias.cjb.net"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 23
+    Top = 16
+    Anchors = 0
+    Visible = True
+    Caption = "vendas4palm 1.4.2.10"
+    Font = "LargeBold"
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 85
+    Top = 132
+    Width = 64
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Sobre"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 85
+    Top = 84
+    Width = 64
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "VENDER"
+    Font = "Bold"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_for
+    Left = 85
+    Top = 116
+    Width = 64
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Fornecedores"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_rel
+    Left = 85
+    Top = 68
+    Width = 64
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Relatorio"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_estoque
+    Left = 85
+    Top = 100
+    Width = 64
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Estoque"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_cli
+    Left = 85
+    Top = 52
+    Width = 64
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Clientes"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+end
+
+
+Private Sub bt_cli_Click()
+  dim clientes as new frmClientes
+
+  clientes.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_estoque_Click()
+	dim estoque as new frmEstoque
+  estoque.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_for_Click()
+	dim fornecedores as new frmFornecedores
+  fornecedores.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Button1_Click()
+	dim vender as new frmVenda
+	vender.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_rel_Click()
+	dim rel as new frmRel
+  rel.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Button2_Click()
+	dim about as new frmAbout
+	about.Show hbFormModeless+hbFormGoto
+End Sub
+
+
+Private Sub Form_Load()
+' UIColor(hbUIFormFill)=hbcolorGray
+'	UIColor(hbUIObjectFill)=hbcolorGray
+'	UIColor(hbUIObjectForeground)=hbcolorwhite
+End Sub

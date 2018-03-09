@@ -1,0 +1,255 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmRelCli
+  Segment = main
+  Extends = Form
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = "Relatório por Clientes\r\n===================\r\n\r\nPara visualizar as vendas realizadas p/ um cliente, selecione este cliente na Popup, e clique em Listar.\r\n\r\nPara visualizar os detalhes de um determinado produto vendido, selecione-o na tabela e clique em Detalhes.\r\n\r\nPara Exportar o resultado da consulta p/ o Memorando, clique em Exportar"
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 2
+    Top = 14
+    Anchors = 0
+    Visible = True
+    Caption = "Cliente:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Popup
+    Name = Popup1
+    Left = 36
+    Top = 14
+    Width = 118
+    Height = 12
+    Anchors = 0
+    Visible = True
+    AnchorLeft = True
+    Text = "popup"
+    Font = "Standard"
+    VisibleItems = 3
+    Sorted = 0
+    Tag = ""
+  end
+  begin GridEx
+    Name = Grid1
+    Left = 2
+    Top = 42
+    Width = 145
+    Height = 96
+    Columns = "AwDYAQUAOABGAAoAAAAAAAAAAAAoAAMABQA4ABQACgAAAAAAAAAAACgAAwAFADgAKAAKAAAAAAAAAAAAKAADAA=="
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 1
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 149
+    Top = 42
+    Width = 7
+    Height = 96
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 2
+    Top = 142
+    Width = 47
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 53
+    Top = 142
+    Width = 46
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Detalhes"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button3
+    Left = 114
+    Top = 29
+    Width = 40
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = "Listar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = btnecp
+    Left = 103
+    Top = 142
+    Width = 49
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Exportar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+end
+Private db1 as new vendas
+Private db2 as new clientes
+Public nmprod as String
+Public vlprod as Double
+Public cliente as String
+Public qtprod as Integer
+Public dtvenda as String
+Public flag as Boolean
+
+
+Private Sub Form_Load()
+		dim cont as Integer
+
+		db2.OpenTable hbModeReadOnly
+		cont = 1
+		if (db2.BOF = true) and (db2.EOF = true) Then
+			MsgBox ("AVISO: Você ainda não Cadastrou nenhum Cliente !!")
+			dim main as new frmMain
+			main.Show hbFormModeless+hbFormGoto
+		else
+			Popup1.AddItem "Selecione",0
+			while (db2.EOF = false)
+				Popup1.AddItem db2.nmcliente,cont
+				db2.moveNext
+				cont = cont + 1
+			Wend
+			Popup1.ListIndex=0
+			Popup1.Redraw=True
+		End if
+		db2.Close
+		'Fim do popup p/ clientes
+		flag = false
+End Sub
+
+
+Private Sub Button3_Click()
+	if (Popup1.ListIndex = 0) Then
+		MsgBox ("Você deve selecionar um cliente para realizar esta operação..")
+	else
+		db2.OpenRecordset "nmcliente = '" & popup1.Text & "'",hbModeOpenAlways+hbModeReadWrite
+		db1.OpenRecordSet "cliente = '" & db2.id &"'",hbModeOpenAlways+hbModeReadWrite
+		Grid1.Populate db1
+	end if
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+	db1.LookupUniqueID lItemData
+
+	vValue(0) = db1.nmprod
+	vValue(1) = db1.qtprod
+	vValue(2) = db1.dt_venda
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+	db1.LookupUniqueID lItemData
+
+	nmprod = db1.nmprod
+	vlprod = db1.vlprod
+	cliente = db1.cliente
+	qtprod = db1.qtprod
+	dtvenda = db1.dt_venda
+	flag = true
+
+	'db1.Close
+End Sub
+
+
+
+
+Private Sub Button2_Click()
+	if (flag = false) Then
+		MsgBox ("Você deve selecionar um produto na tabela..")
+	else
+		dim mostra as new frmRelMost
+		mostra.nmprod = nmprod
+		mostra.cliente = cliente
+		mostra.dtvenda = dtvenda
+		mostra.qtd = qtprod
+		mostra.vlvenda = vlprod
+		mostra.voltar = 2
+		mostra.Show hbFormModeless+hbFormGoto
+	end if
+End Sub
+
+
+Private Sub Button1_Click()
+	dim volta as new frmRel
+	volta.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub btnecp_Click()
+	Dim cMemo as new clsMemo
+	Dim proc as new frmProc
+	Dim n as Long
+	Dim cont as Long
+	cont = 1
+
+	if (Popup1.ListIndex = 0) Then
+		MsgBox ("Você deve selecionar um cliente para realizar esta operação..")
+	else
+		'db1.OpenRecordSet "cliente = '" & db2.id &"'",hbModeOpenAlways+hbModeReadWrite
+
+		'clientes.OpenTable hbModeReadOnly
+
+		db1.MoveFirst
+		while (db1.EOF = false)
+			cMemo.OpenDataBase hbModeReadWrite
+			'Encontrando o registro
+			db2.MoveFirst
+			while (db2.id <> db1.cliente)
+				db2.MoveNext
+			wend
+
+			proc.Show hbFormModeless+hbFormGoto
+			proc.lblprog.Caption = cont&" de "&db1.RecordCount
+
+			n = cMemo.RecordCount
+			Call cMemo.NewMemo()
+			cMemo.Memo = "Venda "&n&" :: Cliente: "&db2.nmcliente&"\n\nProduto: "&db1.nmprod&"\nData: "&db1.dt_venda&"\nValor: "&db1.vlprod&"\nQTD: "&db1.qtprod&"\n\nTOTAL: "&db1.vlprod * db1.qtprod
+			Call cMemo.SaveMemo(True)
+			db1.MoveNext
+		wend
+
+		Call MsgBox("O resultado da busca foi exportado p/ o Memorando com Sucesso...",hbMsgBoxDoneOnly+hbMsgBoxInformation,"CONCLUIDO")
+		db1.Close
+		'clientes.close
+	end if
+End Sub

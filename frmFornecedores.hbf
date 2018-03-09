@@ -1,0 +1,87 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmFornecedores
+  Segment = main
+  Extends = Form
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Button
+    Name = Button1
+    Left = 24
+    Top = 37
+    Width = 112
+    Height = 34
+    Anchors = 0
+    Visible = True
+    Text = "Cadastrar Fornecedores"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 24
+    Top = 76
+    Width = 112
+    Height = 34
+    Anchors = 0
+    Visible = True
+    Text = "Fornecedores Cadastrados"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 45
+    Top = 19
+    Anchors = 0
+    Visible = True
+    Caption = "Fornecedores"
+    Font = "LargeBold"
+    Tag = ""
+  end
+  begin Button
+    Name = btn_volta
+    Left = 24
+    Top = 115
+    Width = 113
+    Height = 31
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+end
+
+Private Sub Button1_Click()
+		dim foradd as new frmForAdd
+  	foradd.Show hbFormModeless+hbFormGoto
+End Sub
+
+
+Private Sub Button2_Click()
+		dim forrem as new frmForRem
+  	forrem.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub btn_volta_Click()
+		dim main as new frmMain
+		main.Show hbFormModeless+hbFormGoto
+End Sub

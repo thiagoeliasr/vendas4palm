@@ -1,0 +1,164 @@
+' Peter Holmes Consulting HB++ Project file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Project
+  Name = Vendas
+  Configuration = Debug
+  Conduit = "vendas1.hbh"
+  Package = ""
+  File = "clsApplication.hbc"
+  File = "frmMain.hbf"
+  File = "frmClientes.hbf"
+  File = "frmRel.hbf"
+  File = "frmEstoque.hbf"
+  File = "frmCliAdd.hbf"
+  File = "frmCliRem.hbf"
+  File = "frmEstAdd.hbf"
+  File = "frmEstRem.hbf"
+  File = "frmEstMost.hbf"
+  File = "frmFornecedores.hbf"
+  File = "frmForAdd.hbf"
+  File = "frmForRem.hbf"
+  File = "frmForMost.hbf"
+  File = "frmVenda.hbf"
+  File = "frmVendAdd.hbf"
+  File = "frmRelData.hbf"
+  File = "frmRelAll.hbf"
+  File = "frmRelMost.hbf"
+  File = "frmRelCli.hbf"
+  File = "frmAbout.hbf"
+  File = "frmCliMost.hbf"
+  File = "clsFormMenu.hbc"
+  File = "clsMemo.hbc"
+  File = "frmProc.hbf"
+  begin Configuration
+    Name = Debug
+    Title = "Vendas"
+    Version = "1.4.2.10"
+    Icon = "big"
+    SmallIcon = "icones"
+    MinOSVersion = 30
+    Locale = 1033
+    Database = "Vendas"
+    Creator = "VEND"
+    Type = "appl"
+    Beamable = True
+    Backup = False
+    Reset = False
+    Hidden = False
+    Const = "DEBUG"
+    Optimize = 0
+    Debug = True
+    CheckNull = True
+    CheckArray = True
+    CheckFPU = True
+  end
+  begin Configuration
+    Name = Release
+    Title = "Vendas"
+    Version = "0.1"
+    Icon = "big"
+    SmallIcon = "icones"
+    MinOSVersion = 30
+    Locale = 1033
+    Database = "Vendas"
+    Creator = "VEND"
+    Type = "appl"
+    Beamable = True
+    Backup = False
+    Reset = False
+    Hidden = False
+    Const = "NDEBUG"
+    Optimize = 1
+    Debug = False
+    CheckNull = False
+    CheckArray = False
+    CheckFPU = False
+  end
+  begin Table
+    Name = clientes
+    Creator = "*"
+    Type = "DATA"
+    Backup = False
+    Bundled = False
+    PDB = 2
+    Filename = "clientes.hbx"
+  end
+  begin Table
+    Name = estoque
+    Creator = "*"
+    Type = "DATA"
+    Backup = False
+    Bundled = False
+    PDB = 2
+    Filename = "estoque.hbx"
+  end
+  begin Table
+    Name = Distribuidores
+    Creator = "*"
+    Type = "DATA"
+    Backup = False
+    Bundled = False
+    PDB = 2
+    Filename = "Distribuidores.hbx"
+  end
+  begin Table
+    Name = venda_tmp
+    Creator = "*"
+    Type = "DATA"
+    Backup = False
+    Bundled = False
+    PDB = 2
+    Filename = "venda_tmp.hbx"
+  end
+  begin Table
+    Name = vendas
+    Creator = "*"
+    Type = "DATA"
+    Backup = False
+    Bundled = False
+    PDB = 2
+    Filename = "vendas.hbx"
+  end
+  begin ImageFamily
+    Name = icones
+    begin Image
+      Density = 72
+      Palette = 3
+      Compression = 255
+      TransparencyColor = -1
+      Filename = "vendasSmallIcon_8bpp_72dpi.bmp"
+    end
+  end
+  begin ImageFamily
+    Name = big
+    begin Image
+      Density = 72
+      Palette = 3
+      Compression = 255
+      TransparencyColor = -1
+      Filename = "vendasBigIcon_8bpp_72dpi.bmp"
+    end
+  end
+  begin ImageFamily
+    Name = img
+    begin Image
+      Density = 72
+      Palette = 4
+      Compression = 255
+      TransparencyColor = -1
+      Filename = "bg-main.bmp"
+    end
+  end
+  begin ImageFamily
+    Name = lowres
+    begin Image
+      Density = 72
+      Palette = 3
+      Compression = 0
+      TransparencyColor = -1
+      Filename = "bg-main.bmp"
+    end
+  end
+end

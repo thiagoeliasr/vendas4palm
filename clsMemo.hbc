@@ -1,0 +1,323 @@
+' Peter Holmes Consulting HB++ Class file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Class
+  Name = clsMemo
+  Segment = hb_ext
+  Extends = Object
+  Instantiable = True
+  Extendable = True
+  Clonable = False
+end
+'=========================================================================
+'
+' hbMemo Sample - clsMemo class
+'
+' THIS SOFTWARE IS PROVIDED BY PETER HOLMES CONSULTING "AS IS" AND
+' ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+' THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+' PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR
+' OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+' SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+' LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+' USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+' AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+' LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+' IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+' THE POSSIBILITY OF SUCH DAMAGE.
+'=========================================================================
+Option Warning 9010
+'=========================================================================
+' ENUM
+'=========================================================================
+'Sort orders
+Public enum eSortOrder
+	soUnsorted=0
+	soAlphabetic=1
+End Enum
+
+'Read mode
+Public enum eReadMode
+	Normal=0						'The entire record is loaded
+	FirstLineOnly=1			'Only the memo first line is loaded
+	Browse=2						'Only the record header is loaded
+End Enum
+
+'=========================================================================
+' MEMBERS
+'=========================================================================
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' PUBLIC
+' Memo DataBase
+Public MemoDB as new RecordDB
+Public ReadMode as eReadMode
+
+' General properties of a record
+Public Category as integer
+Public bPrivate as Boolean
+
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' PROTECTED
+' Memo properties
+Private lIndex as Long
+Private lUniqueID as Long
+Private szMemo as String
+
+Private streamMemo as StreamRecord
+Private bSortOrder as eSortOrder
+
+
+
+
+'=========================================================================
+' PUBLIC METHODS
+'=========================================================================
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' DataBase Methods (Open/Close/Sort)
+Public function OpenDataBase(byval Mode as HbMode) as RecordDB
+	MemoDB.OpenByName "MemoDB",Mode
+	Set OpenDataBase=MemoDB
+	bSortOrder=SortOrder
+End function
+
+
+Private Sub SortDatabase(byval eSort as eSortOrder)
+	Select Case eSort
+		Case soUnsorted
+			'Sort db on SortNone
+
+		Case soAlphabetic
+			'Sort MemoDB on SortAlphabetic
+
+		Case else
+			Stop
+	End Select
+End Sub
+
+
+'=========================================================================
+' Management functions of the recordset
+'=========================================================================
+Public Function RecordCount() as integer
+	RecordCount=MemoDB.RecordCount
+End Function
+
+Public Sub MoveFirst()
+	Index =0
+	if Not EOF then
+		if ReadMemo() then
+			Exit sub
+		else
+			MoveNext
+		End if
+	End if
+End Sub
+
+Public Sub MoveNext()
+NextRec:
+	Index =Index+1
+	if Not EOF then
+		if ReadMemo() then
+			Exit sub
+		else
+			Goto NextRec
+		End if
+	End if
+End Sub
+
+Public Sub MovePrevious()
+PrevRec:
+	Index =Index-1
+	if Not BOF then
+		if ReadMemo() then
+			Exit sub
+		else
+			Goto PrevRec
+		End if
+	End if
+End Sub
+
+Public Sub MoveLast()
+	Dim i as Integer
+	For i=RecordCount-1 to 0 step -1
+		Index =i
+		if ReadMemo then 	Exit sub
+	Next i
+End Sub
+
+Public function BOF() as boolean
+	BOF = (Index < 0)
+End function
+
+Public function EOF() as boolean
+	EOF = (Index >= MemoDB.RecordCount)
+End function
+
+Public Sub LookupUniqueID(byval lUID as Long)
+	Index =MemoDB.LookupUniqueID( lUID )
+	ReadMemo
+End Sub
+
+
+'=========================================================================
+' New / Read / Save /Delete Methods
+'========================================================================
+
+Public Function NewMemo() as Long
+ 	Dim rec as StreamRecord, i as Integer
+
+
+	Me.Category=0
+	Me.Secret=False
+	Me.szMemo=""
+
+	Set rec=New StreamRecord
+	Write rec, Me
+	rec.Category=Category
+	rec.Secret=bPrivate
+
+	'get index :
+	For i =MemoDB.RecordCount-1 to 0 step -1
+		if not (MemoDB.Record(i) is nothing) then
+			Index=i+1
+			Exit For
+		End if
+	Next i
+	MemoDB.NewRecord rec,Index
+	'get unique ID !!!
+	NewMemo=rec.UniqueID
+End Function
+
+
+
+Public Function ReadMemo() as Boolean
+	Set streamMemo=MemoDB.Record(Index)
+	if not streamMemo is nothing then
+		ReadMemo=True
+		if ReadMode<Browse then
+			Read streamMemo, Me
+		End if
+		'Minimal
+		lUniqueID=streamMemo.UniqueID
+		Category=streamMemo.Category
+		bPrivate=streamMemo.Secret
+	End if
+End Function
+
+Private Sub ReadMemo1stLine(byref s as StreamMemory)
+  Dim i as Integer
+	if not s is nothing then
+    i=s.FindByte(0,Asc("\n"))
+    If i<0 Then i=s.Size
+    Read s, szMemo[i]
+	End if
+End sub
+
+
+Public sub SaveMemo(byval bSort as Boolean)
+	Dim rec as StreamRecord
+
+	'Write record
+	Set rec=New StreamRecord
+	Write rec, Me
+	rec.Category=Category
+	rec.Secret=bPrivate
+	rec.UniqueID=UniqueID
+
+	Set MemoDB.Record(Index)=rec
+
+	'Force resort if necessary
+	If SortOrder=soAlphabetic then SortOrder=soAlphabetic
+
+End Sub
+
+Public Sub DeleteMemo(byval eMode as HbRecord)
+	MemoDB.DeleteRecord Index,eMode
+	MemoDB.MoveRecord Index,MemoDB.RecordCount
+End Sub
+
+
+
+
+'=========================================================================
+' Stream Serialize
+'=========================================================================
+Private Sub Object_Serialize(ByVal objStream As Stream, ByVal eDirection As HbStream, ByVal lSize As Long)
+	if eDirection=hbStreamRead then
+		if ReadMode=FirstLineOnly then
+			ReadMemo1stLine objStream
+		else
+			Read objStream,szMemo
+		End if
+	else
+		Write objStream,szMemo
+	End if
+End Sub
+
+
+
+
+'=========================================================================
+' Members Properties
+'=========================================================================
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' SORT ORDER
+Public Property Let SortOrder(byval eSort as eSortOrder)
+	bSortOrder=eSort
+	'Read the Sort Order
+	dim s as StreamMemory
+	set s=MemoDB.Info.AppInfoBlock
+	s.Seek 280
+	Write s,eSort
+	Set MemoDB.Info.AppInfoBlock=s
+	SortDatabase eSort
+End Property
+
+Public Property Get SortOrder() as eSortOrder
+	'Read the Sort Order
+	dim b as eSortOrder
+	dim s as StreamMemory
+	set s=MemoDB.Info.AppInfoBlock
+	s.Seek 280
+	Read s,b
+
+	SortOrder=b
+End Property
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' INDEX
+Public Property Get Index() as Long
+	Index=lIndex
+End Property
+Private Property Let Index(Byval l as Long)
+	lIndex=l
+End Property
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' UNIDEID
+Public Property Get UniqueID() as Long
+	UniqueID=lUniqueID
+End Property
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' MEMO
+Public Property Get Memo() as String
+	Memo=szMemo
+End Property
+Public Property Let Memo(Byval sz as String)
+	szMemo=sz
+End Property
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' SECRET
+Public Property Get Secret() as Boolean
+	Secret=me.bPrivate
+End Property
+Public Property Let Secret(Byval bSecret as Boolean)
+	bPrivate=bSecret
+End Property

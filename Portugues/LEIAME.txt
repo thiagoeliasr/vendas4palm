@@ -1,0 +1,29 @@
+VENDAS 4 PALM
+=============
+
+INSTALAÇÃO
+==========
+
+Para instalar esta aplicação, você terá de instalar o executável (*.prc) e as tabelas (*.pdb).
+O executável será de acordo com o seu dispositivo.
+Para dispositivos de 65536 cores como Tungsten | E, Tungsten | T3, Zire 71, Zire 72, instale
+o executável Vendas_HiColor.prc e todos os arquivos *.pdb.
+(A instalação poderá ser feita com seu Quick Install, ou qualquer programa que faça este serviço.)
+Se você tiver um palm com 256 cores, como o Palm IIIc, instale o executável Vendas_256c.prc e todos
+os outros arquivos *.pdb
+Caso você tenha um Palm que não suporte cores, como o Zire 21, Palm V, etc, instale o executável
+Vendas_bw.prc e todos os outros arquivos *.prc
+
+
+LICENÇA
+==========
+Este software foi desenvolvido com fins educacionais, e é distribuído como Freeware.
+Estou disponibilizando até mesmo o código fonte sob a licensa GPL
+no site www.thiagoelias.cjb.net, assim como faço com todos os meus projetos.
+
+
+AUTOR
+==========
+Thiago Elias Rezende Silva
+Sistemas de Informação
+UNIUBE: Uberaba - MG

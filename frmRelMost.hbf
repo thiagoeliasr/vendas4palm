@@ -1,0 +1,275 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmRelMost
+  Segment = hb_ext
+  Extends = clsFormMenu
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 3
+    Top = 17
+    Anchors = 0
+    Visible = True
+    Caption = "Produto:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 3
+    Top = 34
+    Anchors = 0
+    Visible = True
+    Caption = "Preço de Venda:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 3
+    Top = 51
+    Anchors = 0
+    Visible = True
+    Caption = "Cliente:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label4
+    Left = 3
+    Top = 69
+    Anchors = 0
+    Visible = True
+    Caption = "Quantidade:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label5
+    Left = 4
+    Top = 87
+    Anchors = 0
+    Visible = True
+    Caption = "Data da Venda:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 3
+    Top = 141
+    Width = 150
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Field
+    Name = fldprod
+    Left = 42
+    Top = 17
+    Width = 111
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = False
+    Underline = False
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = fldpreco
+    Left = 93
+    Top = 34
+    Width = 56
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = False
+    Underline = False
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label6
+    Left = 72
+    Top = 34
+    Anchors = 0
+    Visible = True
+    Caption = "R$:"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Field
+    Name = fldcli
+    Left = 41
+    Top = 51
+    Width = 112
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = False
+    Underline = False
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = fldqt
+    Left = 57
+    Top = 69
+    Width = 52
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = False
+    Underline = False
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = flddt
+    Left = 71
+    Top = 87
+    Width = 82
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = False
+    Underline = False
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin MenuBar
+    begin MenuTitle
+      Caption = "Editar"
+      begin MenuItem
+        Name = mnuCut
+        Caption = "Recortar"
+        Shortcut = "P"
+      end
+      begin MenuItem
+        Name = mnuCopy
+        Caption = "Copiar"
+        Shortcut = "X"
+      end
+      begin MenuItem
+        Name = mnuPaste
+        Caption = "Colar"
+        Shortcut = "C"
+      end
+      begin MenuItem
+        Name = mnuSelect
+        Caption = "Selecionar Tudo"
+        Shortcut = "S"
+      end
+      begin MenuSeparator
+      end
+      begin MenuItem
+        Name = mnuKeyboard
+        Caption = "Teclado Virtual"
+        Shortcut = "K"
+      end
+      begin MenuItem
+        Name = mnuGraffiti
+        Caption = "Ajuda do Graffiti"
+        Shortcut = "G"
+      end
+    end
+  end
+end
+Public nmprod as String
+Public vlvenda as Double
+Public cliente as String
+Public qtd as Integer
+Public dtvenda as String
+Private db1 as New vendas
+Private db2 as New clientes
+Public voltar as integer
+
+
+Private Sub Form_Load()
+
+	db1.OpenTable hbModeReadOnly
+	db2.OpenTable hbModeReadOnly
+
+	'Procurando Pelo ID do cliente...
+	db2.MoveFirst
+	while (db2.id <> cliente)
+		db2.MoveNext
+	wend
+
+
+	fldprod.Text = Trim(nmprod)
+	fldpreco.Text = vlvenda
+	fldcli.Text = db2.nmcliente
+	fldqt.Text = qtd
+	flddt.Text = dtvenda
+
+	db1.Close
+	db2.Close
+End Sub
+
+
+Private Sub Button1_Click()
+	dim v1 as new frmRelData
+	dim v2 as new frmRelCli
+	dim v3 as new frmRelAll
+
+	if voltar = 3 then
+		v1.Show hbFormModeless+hbFormGoto
+	else
+		if voltar = 2 then
+			v2.Show hbFormModeless+hbFormGoto
+		else
+			if voltar = 1 then
+				v3.Show hbFormModeless+hbFormGoto
+			end if
+		end if
+	end if
+End Sub

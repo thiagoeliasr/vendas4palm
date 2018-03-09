@@ -1,0 +1,99 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmClientes
+  Segment = main
+  Extends = Form
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 59
+    Top = 20
+    Anchors = 0
+    Visible = True
+    Caption = "Clientes"
+    Font = "LargeBold"
+    Tag = ""
+  end
+  begin Button
+    Name = bt_add
+    Left = 5
+    Top = 56
+    Width = 150
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Adicionar Cliente a base de dados"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_rem
+    Left = 5
+    Top = 72
+    Width = 150
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Ver / Remover cliente"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 22
+    Top = 147
+    Anchors = 0
+    Visible = True
+    Caption = "2005 - Thiago Elias Networks"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Button
+    Name = bt_volta
+    Left = 18
+    Top = 128
+    Width = 124
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar p/ Menu principal"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+end
+
+Private Sub bt_add_Click()
+  dim addcliente as new frmCliAdd
+
+  addcliente.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_rem_Click()
+  dim remcliente as new frmCliRem
+
+  remcliente.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_volta_Click()
+  dim f as new frmMain
+
+  f.Show hbFormModeless+hbFormGoto
+End Sub

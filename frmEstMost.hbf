@@ -1,0 +1,444 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmEstMost
+  Segment = main
+  Extends = clsFormMenu
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Field
+    Name = nmprod
+    Left = 40
+    Top = 19
+    Width = 116
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 3
+    Top = 21
+    Anchors = 0
+    Visible = True
+    Caption = "Produto:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 3
+    Top = 36
+    Anchors = 0
+    Visible = True
+    Caption = "Qtd:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = qtprod
+    Left = 40
+    Top = 34
+    Width = 40
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 3
+    Top = 51
+    Anchors = 0
+    Visible = True
+    Caption = "Dist.:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = distprod
+    Left = 40
+    Top = 49
+    Width = 115
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label4
+    Left = 2
+    Top = 66
+    Anchors = 0
+    Visible = True
+    Caption = "Vl venda:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = vlvenda
+    Left = 41
+    Top = 64
+    Width = 51
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label5
+    Left = 3
+    Top = 99
+    Anchors = 0
+    Visible = True
+    Caption = "Descrição:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = dsprod
+    Left = 46
+    Top = 90
+    Width = 106
+    Height = 67
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 500
+    Align = 0
+    Scrollbar = "Scrollbar1"
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 152
+    Top = 92
+    Width = 7
+    Height = 68
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = bt_altera
+    Left = 3
+    Top = 128
+    Width = 39
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Alterar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_volta
+    Left = 3
+    Top = 144
+    Width = 39
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Graffiti
+    Name = Graffiti1
+    Left = 4
+    Top = 114
+    Anchors = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label6
+    Left = 2
+    Top = 80
+    Anchors = 0
+    Visible = True
+    Caption = "VL Compra:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = vlcompra
+    Left = 51
+    Top = 79
+    Width = 41
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Button
+    Name = bt_last
+    Left = 141
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = ">>"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_next
+    Left = 121
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = ">"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_prior
+    Left = 101
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = "<"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_first
+    Left = 81
+    Top = 1
+    Width = 18
+    Height = 11
+    Anchors = 0
+    Visible = True
+    Text = "<<"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin MenuBar
+    begin MenuTitle
+      Caption = "Editar"
+      begin MenuItem
+        Name = mnuCut
+        Caption = "Recortar"
+        Shortcut = "P"
+      end
+      begin MenuItem
+        Name = mnuCopy
+        Caption = "Copiar"
+        Shortcut = "X"
+      end
+      begin MenuItem
+        Name = mnuPaste
+        Caption = "Colar"
+        Shortcut = "C"
+      end
+      begin MenuItem
+        Name = mnuSelect
+        Caption = "Selecionar Tudo"
+        Shortcut = "S"
+      end
+      begin MenuSeparator
+      end
+      begin MenuItem
+        Name = mnuKeyboard
+        Caption = "Teclado Virtual"
+        Shortcut = "K"
+      end
+      begin MenuItem
+        Name = mnuGraffiti
+        Caption = "Ajuda do Graffiti"
+        Shortcut = "G"
+      end
+    end
+  end
+end
+Public prodfield As String
+Public qtdfield As Integer
+Public distfield As String
+Public vlfield As Double
+Public vlcfield As Double
+Public dsfield As String
+Public prodid As Long
+Public position As Long
+Public db2 as New estoque
+
+Private Sub atribui()
+	prodid = db2.UniqueID
+	position = db2.AbsolutePosition
+	nmprod.Text = db2.nmprod
+	qtprod.Text = db2.qtprod
+	distprod.Text = db2.distprod
+	vlvenda.Text = db2.vlvenda
+	vlcompra.Text = db2.vlcompra
+	dsprod.Text = db2.descprod
+End Sub
+
+
+
+Private Sub getdados()
+  nmprod.Text = prodfield
+	qtprod.Text = qtdfield
+	distprod.Text = distfield
+	vlvenda.Text = vlfield
+	vlcompra.Text = vlcfield
+	dsprod.Text = dsfield
+End Sub
+
+
+Private Sub Form_Load()
+	'db2.OpenTable hbModeCreateAlways+hbModeReadWrite
+  Call getdados()
+End Sub
+
+Private Sub bt_volta_Click()
+  dim ver as new frmEstRem
+	db2.Close
+	ver.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_altera_Click()
+
+	db2.OpenTable hbmodeWrite
+	'db2.OpenTable hbModeCreateAlways+hbModeWrite'
+	db2.LookupUniqueID prodid
+	db2.Edit
+	db2.UniqueID = prodid
+	db2.nmprod = Trim(nmprod.Text)
+	db2.qtprod = Cint(qtprod.Text)
+	db2.distprod = Trim(distprod.Text)
+	db2.vlcompra = CDbl(vlcompra.Text)
+	db2.vlvenda = CDbl(vlvenda.Text)
+	db2.descprod = Trim(dsprod.Text)
+
+	db2.Update
+	db2.Close
+
+	MsgBox ("Product data was sucessfully updated")
+	nmprod.Text = ""
+	qtprod.Text = ""
+	distprod.Text = ""
+	vlvenda.Text = ""
+	dsprod.Text = ""
+End Sub
+
+Private Sub bt_first_Click()
+	db2.OpenTable hbModeReadOnly
+	db2.MoveFirst
+	Call atribui()
+End Sub
+
+
+Private Sub bt_prior_Click()
+	db2.OpenTable hbModeReadOnly
+	db2.AbsolutePosition = position
+  db2.MovePrevious
+  If db2.BOF Then
+    db2.MoveFirst
+  Else
+    call atribui()
+  End If
+	position = db2.AbsolutePosition
+	db2.Close
+End Sub
+
+
+Private Sub bt_next_Click()
+	db2.OpenTable hbModeOpenAlways+hbModeReadWrite
+	db2.AbsolutePosition = position
+  db2.MoveNext
+  If db2.EOF Then
+    db2.MoveLast
+  Else
+    Call atribui()
+  End If
+	position = db2.AbsolutePosition
+	db2.Close
+
+End Sub
+
+
+Private Sub bt_last_Click()
+	db2.OpenTable hbModeReadOnly
+	db2.MoveLast
+	Call atribui()
+End Sub

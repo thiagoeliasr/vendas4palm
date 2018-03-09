@@ -1,0 +1,39 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmProc
+  Segment = hb_ext
+  Extends = Form
+  Left = 2
+  Top = 108
+  Width = 156
+  Height = 50
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Progresso..."
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 5
+    Top = 22
+    Anchors = 0
+    Visible = True
+    Caption = "Exportando...."
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = lblprog
+    Left = 67
+    Top = 22
+    Anchors = 0
+    Visible = True
+    Caption = "label"
+    Font = "Standard"
+    Tag = ""
+  end
+end

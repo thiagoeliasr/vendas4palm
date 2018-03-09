@@ -1,0 +1,326 @@
+== VENDAS ==
+= Changelog =
+
+Thiago Elias Rezende Silva
+a5031810@yahoo.com.br
+www.thiagoelias.cjb.net
+
+===================================
+|LEGENDA:                         |
+|[C] : CORREÇÃO                   |
+|[P] : PROBLEMA                   |
+|[I] : IMPLEMENTAÇÃO              |
+|[OK]: IMPLEMENTAÇÃO JÁ REALIZADA |
+===================================
+
+
+
+- 26/02/2005
+--> Sistema de adição de Clientes à Base de Dados
+--> Forms, data base, etc..
+
+- 02/03/2005
+--> Cadastro de Produtos ao estoque
+--> Forms, ajustes no data base.
+
+- 07/03/2005
+--> Ordenação dos Resultados de tabelas por Ordem alfabética
+
+- 04/04/2005
+--> foi adicionado no formulário de cadastro de produtos, uma Popup, que consulta a tabela Distribuidores,
+    e lista todos eles para que o vendedor possa selecionar um p/ a venda.
+
+- 05/04/2005
+--> Adicionados formulários p/ cadastro de Fornecedores e visualização dos vendedores já cadastrados.
+
+- 22/04/2005
+--> Adicionado formulaários p/ venda, mas ainda resta dar funcionalidade a eles.
+
+-17/05/2005
+--> Adicionado funcionalidade ao formulário de venda. AS vendas caem na tabela temp,
+    p/ poderem ser confirmadas na tabela VENDAS
+
+-18/05/2005
+--> 1) Foram corrigidos alguns bugs nos dois formulários de Vendas, onde quando era 
+    selecionado o botão voltar, ele tentava reabrir a tabela (que já estava aberta)
+    pelo outro formulário.
+    A Resolução foi simples, bastou chamar a função close da tabela sempre que fosse
+    chamar o outro formulário.
+    2) Os dois formulários de vendas foram alterados p/ Modal, e agora podem exibir
+    uma ajuda, a qual é disponível se clicar o ícone (i) no canto superior direito
+    do formulário.
+
+-27/05/2005
+--> 1) Correção de falhas existentes no botão Limpar do formulario frmVendas.
+    2) Atualização do estoque quando um produto vai p/ a tabela do carrinho.
+       Desta forma, ele atualiza a quantidade de produtos que ainda resta no estoque.
+    3) Controle sobre a quantidade vendida.. o Vendedor não pode vender mais produtos 
+       do que o estoque tem..
+
+-04/06/2006
+--> 1) Feitas as seguintes correções:
+	a) Erros na venda, não havia como vender uma quantidade maior que o produto
+           que tivesse a menor quantidade em estoque, pois o sistema sempre verificava
+           o produto que tinha a menor quantidade, e não a quantidade de um determinado
+           produto.
+
+        b) O botão Limpar do formulário frmVenda agora remove completamente a tabela
+	   vendas_temp e antes disso retorna todas as quantidades para o Estoque.
+	
+	c) O Botão remover agora retorna a quantidade para a tabela estoque, assim como
+           o botão Limpar.
+    2) Funcionalidade do botão finalizar Venda no formulário frmVenda. Agora a venda
+       é concretizada com sucesso, sendo todo o conteúdo do carrinho passado para a 
+       tabela vendas, em seguida, o carrinho é limpo para novas vendas.
+    3) Funcionamento Simples do formulário frmRel, somente para fins de exibição dos
+       produtos vendidos, e para fins de testes.
+       A versão completa do formulário frmRel trará opções necessárias para geração
+       de formulários de vendas ordenadas por clientes, datas, etc.
+
+-06/06/2005
+--> 1) Adição dos formulários do relatório, como consulta por datas e consulta geral.
+       A consulta geral funciona normalmente, e lista todos os produtos vendidos.
+       A Consulta por Datas não funciona corretamente ainda, pois não está listando 
+       as vendas no determinado intervalo definido pelo usuário.
+
+-07/06/2005
+--> 1) Sistema de consulta por datas corrigido, agora o sistema exibe todas as vendas
+       no intervalo de datas definido pelo usuário.
+    2) Adicionado o formulário detalhes, o qual exibe as informações sobre o produto 
+       vendido, como quantidade, valor, o comprador e a data da venda.
+       Este formulário é utilizado por todos os formulários de Relatório, assim como
+       o relatório de Datas, total e o de clientes, para exibir os detalhes dos produtos
+       listados em suas tabelas.
+    3) Criado o formulário Vendas por cliente, o qual exibe todos os produtos vendidos para
+       um determinado cliente, que é selecionado em uma Popup.
+
+-08/06/2005
+--> 1) Correção de Erros na passagem de parâmetros à função db.LookupUniqueID dos 
+       formulários de Relatório. Quando o usuário não selecionava nenhum produto na 
+       tabela e clicava em Detalhes, o formulario anterior não passava o valor da
+       Unique ID do produto pra função, que retornava este erro. Adicionei um Flag,
+       que será verdadeiro quando o usuário selecionar algo na tabela. Se for falso,
+       o formulário não irá passar o parâmetro à função e irá pedir que o usuário selecione
+       um produto.
+    2) Adicionada uma imagem de fundo ao formulário frmMain, que poderá ser exibida
+       corretamente em dispositivos com 65536 cores. Os dispositivos com cores abaixo desse
+       valor serão suportados através do executável: Vendas-bw.prc, que não contem a imagem.
+       Relatório.
+
+-30/06/2005
+-->    Correção [bug fix]:
+       1:
+	[P]Quando o usuário deletava um cliente da tabela cliente, os produtos vendidos para 
+           esse cliente ficavam no banco de dados, indicando a UniqueID desse cliente que já
+           não mais existia no banco,e quando o formulário frmRelMost era chamado, ocorria
+	   um erro de passagem de parâmetros.
+        [C]Agora quando um determinado cliente é removido, todos os produtos vendidos para este
+           cliente também são removidos da tabela Vendas. O meu critério para esta correção foi
+           baseado no fato de que se um cliente é removido, os dados referentes a ele não mais
+           interessam para o usuário. [Caso haja pedidos pela outra interpretação de que o 
+           usuário ainda queira os dados das vendas, mesmo sem o cliente, irei trabalhar para
+           permitir os dois casos. 
+       2:
+	[P]Quando o usuário desejava cadastrar um produto no no estoque e ainda não tinha
+           cadastrado nenhum fornecedor, ou iria adicionar algum produto no carrinho, mas
+           não tinha nenhum cliente cadastrado, o sistema retornava uma mensagem de aviso
+           que essas pendências ainda não estavam resolvidas, mas mesmo assim permitia que
+           o usuário tivesse acesso ao formulário, causando resultados inesperados ao
+	   funcionamento do aplicativo.
+	[C]A correção foi simples, bastou passar o controle do aviso para o formulário anterior,
+	   o qual faz o link com o formulário onde a popup deve exibir os dados dos clientes ou
+	   fornecedores, fazendo com que o formulário seja exibido somente se usuários ou fornecedores
+	   tenham sido cadastrados previamente.
+
+-12/07/2005
+--> Correção [Bug Fix]:
+       1:
+	[P] Quando o usuário mandava cadastrar um produto, mesmo que ele não tivesse selecionado nenhum
+            cliente, o sistema cadastrava como cliente "Selecione", o que era um erro considerado gravíssimo.
+	[C] Uma estrutura condicional foi adicionada para controlar esse tipo de problema, e o usuário 
+            só pode adicionar um produto ao carrinho somente se ele tiver selecionado um cliente na Popup.
+       2:
+	[P] Se o usuário não selecionasse nenhum produto no formulário frmVendAdd, e clicasse no botão
+            "Adicionar", o sistema retornava uma mensagem de erro: "Type Mismatch", justamente por estar
+	    tentando converter um valor nulo em inteiro.
+	[C] Novamente o problema foi resolvido com uma estrutura condicional, que verifica se a input do
+	    tipo Edit contem dados ou é nula. Se for nula, retorna a mensagem de erro que ele deve selecionar
+	    um produto na tabela (evitando a chamada ao erro de sistema Type Mismatch), caso contrário,
+	    o valor contido na input é convertido para o tipo inteiro e o programa segue em execução.
+       3:
+	[P] Botões "Remover", "Limpar" e "Finalizar" apresentavam problemas por falta de condicionais, o
+	    que poderia causar erros como: Deletar produtos de um carrinho vazio, ou deletar produtos do
+            carrinho que o usuário não tinha selecionado, ou até mesmo finalizar uma venda com um carrinho
+	    vazio.
+	[C] Condicionais foram adicionadas a esses botões, trazendo um controle maior sobre erros de
+	    cadastro ao banco de dados.
+       4:
+	[P] Tabela Clientes não oferecia uma quantidade suficientes de atributos, faltava o campo Estado.
+	    [normalmente o campo estado é uma chave estrangeira para uma tabela Estado, mas os estados
+             serão listados em uma popup no próprio formulário, controlando o que o usuário irá digitar,
+	     então não achei necessário para esse caso a tabela Estado, [apesar de ser a correção correta
+             a se fazer]]
+	[C] Tabela Clientes corrigida, e adicionado os devidos campos no formulário frmCliAdd.
+
+-13/07/2005
+--> Correção / Implementação:
+       1:
+	[P] Inconsistência de dados não checada, usuário podia cadastrar clientes em branco.
+	[C] Adicionadas as condicionais necessárias para o funcionamento correto..
+	[I] Formulário novo para cadastro de clientes, contendo Popup com os Estados brasileiros
+	[I] Novo formulário para exibir os detalhes do cliente selecionado.
+	[P] O novo formulário ainda não tem funcionalidade.
+
+-14/07/2005
+
+--> Correção / Implementação:
+       1:
+	[I] Funcionalidade ao formulário fmrCliMost. Este formulário está totalmente funcional, e mostra
+	    os detalhes de um determinado cliente selecionado no form frmCliRem, possibilitando a
+	    alteração dos dados cadastrados, assim como os formulários semelhantes de estoque e fornecedores.
+	[P] Assim como alguns outros formulários corrigidos anteriormente, o form que exibe os fornecedores
+	    cadastrados (frmFornRem) não validava se o usuário tinha selecionado ou não um item na tabela,
+	    exibindo o próximo formulário sem dados, ou removendo clientes que não existiam na tabela fornecedores
+	[C] Foi feito o controle condicional, que define se o usuário selecionou ou não um item na tabela para que
+	    o sistema possa tomar uma decisão.
+	[P] O campo UF do formulário de cadastro de Fornecedores, e o de exibição de fornecedores (frmFornAdd e frmFornMost
+            respectivamente) era do tipo Edit, permitindo que o usuário cadastrasse estados inválidos..
+	[C] Esses campos foram substituídos por Popups, que exibem os estados corretos, assim como foi feito nos forms
+	    relacionados aos clientes.
+
+-29/07/2005
+
+--> Correção [Bug Fix]
+       1:
+	[P] O usuário poderia incluir no carrinho, produtos com quantidade igual a zero, graças a um erro
+            que cometí ao esquecer de validar se a quantidade em estoque era igual a zero.
+	[C] Bastou colocar a condicional no local certo, e tudo resolvido no frmVendAdd.
+
+-03/08/2005
+--> Correção [Bug Fix] / Implementação
+       1:
+	[P] Os campos de entrada de dados como nome eram pequenos e não ofereciam suporte a multiline, então o
+            usuário não conseguia entrar com endereços ou nomes muito grandes, pois o campo não suportava.
+	[C] Todos os campos agora tem a propriedade MultiLie = True, o que permite o usuário digitar nomes grandes.
+
+       2:
+	[I] Foi implementado ao banco de dados Fornecedores e Clientes, dois campos: CEP e e-mail.
+	    os formulários de cadastro e exibição também já foram alterados para suportar essa modificação.
+
+-11/08/2005
+--> Correção [Bug Fix]
+       1:
+	[P] Campo de endereço pequeno demais.. 
+	[C] Suporte Multi-linhas, permitindo longos endereços..
+
+-10/09/2005
+--> Correção [Bug Fix]
+       1:
+	[P] O campo UniqueID é incompatível com o Desktop.
+	[I] Foi criado o campo id, que é responsável pelo sincronismo do palm com o desktop sem conflitos.
+
+-13/09/2005
+--> Correção [Bug Fix]
+       1:
+	[P] Alguns campos eram incompativeis com o Unique Id que eu tinha colocado na versão Desktop, causando
+            conflito entre as duas versões das duas plataformas.
+	[I] Implementado o campo CPF/CNPJ no Formulário de Clientes, e Implementado o Campo CNPJ em Distribuidores.
+	[C] Alteração de todas as tabelas p/ suportar o cpf/cnpj que passou a ser a chave primária das tabelas
+	    clientes e distribuidores, e alteração nos formulários para não referenciar mais a UniqueID quando
+	    cadastrar dados nas chaves estrangeiras.
+
+-14/09/2005
+--> Correção [Bug Fix]
+       1:
+	[P] Problemas de referência à UniqueID da tabela Estoque.
+	[C] Como não há um tipo de dados como auto-incremento, foi necessário fazer uma lógica capaz de
+	    realizar esse processo e atualizar o banco de dados a cada inserção de produtos, assim
+            incrementando o contador no banco.
+       2:
+	[P] Com as alterações no banco de dados, alguns novos problemas surgiram, atrapalhando o funcionamento
+            do sistema, como falta de referência ao código dos clientes [já que o sistema todo utilizada
+            as UniqueID's como chaves primárias. Após todas as alterações restaram alguns problemas como
+	    em detalhes não passar o código correto de um determinado cliente ou um produto qualquer.
+	[C] Ao invés de usar as chamadas lookupUniqueID, onde era bem fácil saber em qual posição estava
+            um produto, criei uma lógica própria pra percorrer o banco em busca do dado desejado, uma
+            vez que não estou utilizando mais a UniqueID como código. a lógica é a seguinte:
+		
+		banco mova p/ primeira posição
+		enquanto codigo no banco for diferente do código desejado faça
+			banco mova uma posição a frente
+		fim-enquanto
+
+	    que ficou assim:
+
+		db.MoveFirst
+		while(db.prodid <> prod_id)
+			db.MoveNext
+		wend
+
+-01/10/2005
+--> Correção [Bug Fix]
+       1:
+	[P] Ao cadastrar um cliente, alguns campos não eram inicializados com caractere vazio, deixando alguns
+            dados do cliente cadastrado na tela.
+	[C] Atribuí à propriedade Text desses campos o valor "", que inicializa corretamente o campo.
+       2:
+	[P] Não havia como voltar p/ o menu inicial a partir do formulário principal de Fornecedores...
+	[C] Foi colocado um botão que faz o serviço...
+       3:
+	[P] Botão Volta do formulário frmFornRem voltava para o menu inicial da aplicação [frmMain], enquanto
+            o correto é voltar para o formulário anterior.
+	[C] Correções necessárias realizadas...
+
+-30/11/2005
+--> Correção [Bug Fix] + Implementação
+       1:
+	[I]  Implementado os menus de Edição: Copiar, colar, recortar, Selecionar Tudo,
+             Teclado virtual, e ajuda do graffiti.
+       2:
+	[P]  Com a nova implementação, alguns botões "Voltar" de alguns formulários
+	     retornavam erros quando eram utilizados. (Variable not Set)
+	[C]  Erro corrigido com a utilização da cláusula NEW na declaração do objeto.
+
+-01/12/2005
+--> Implementação
+       1:
+	[I] Implementação da exportação dos resultados das tabelas do programa p/ o Memorando,
+	    para que o usuário possa acessar os registros das vendas no PC Desktop.
+	    Esse recurso está disponível no botão exportar, que foi implementado nos formulários
+	    de Relatório.
+ 
+
+
+
+===================================
+Implementações Previstas Realizadas:
+
+[OK] >> Melhorar o sistema de cadastro de clientes, assim como o de consulta.
+      - Esta modificação irá alterar também a tabela clientes.
+[OK] >> Adicionar os campos CPF/CNPJ p/ os formulários de Clientes e Fornecedores.
+
+===================================
+Implementações Previstas não Realizadas:
+[  ] >> Fazer validação de CPF/CNPJ e adicionar um campo p/ visualização nos formularios de consulta
+
+
+
+
+===================================
+Correções Previstas Realizadas:
+
+[OK] >> Consistência dos dados dos formulários de cadastro.
+      - O usuário não poderá cadastrar registros em branco. 
+
+
+
+
+
+===================================
+Correções Previstas não Realizadas:
+ 
+   - Erro de Violation Sharing, quando termina de adicionar um produto no carrinho
+   e clica em adicionar de novo.
+
+    
+    

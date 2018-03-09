@@ -1,0 +1,186 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmForRem
+  Segment = main
+  Extends = Form
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin GridEx
+    Name = Grid1
+    Left = 3
+    Top = 19
+    Width = 149
+    Height = 123
+    Columns = "AQDqAAUAOAB4AAoAAAAAAAAAAAAoAAMA"
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 0
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 153
+    Top = 19
+    Width = 7
+    Height = 123
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 3
+    Top = 147
+    Width = 49
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Detalhes"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 55
+    Top = 147
+    Width = 49
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Remover"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button3
+    Left = 107
+    Top = 147
+    Width = 49
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 47
+    Top = 1
+    Anchors = 0
+    Visible = True
+    Caption = "Fornecedores Cadastrados"
+    Font = "Standard"
+    Tag = ""
+  end
+end
+Private db2 As New Distribuidores
+Public fornid as Long
+Public nmforn as String
+Public endforn as String
+Public cidforn as String
+Public ufforn as String
+Public foneforn as String
+Public flag as boolean
+Public position as Long
+
+
+
+Private Sub GoMain()
+  dim f as new frmMain
+	f.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Form_Load()
+  'db2.Table hbModeOpenExisting+hbModeReadWrite'
+	db2.OpenRecordSet "nome Like '*' ORDER BY nome ASC",hbModeOpenAlways+hbModeReadWrite
+  Grid1.Populate db2
+	flag = false
+End Sub
+
+Private Sub Form_Unload()
+  db2.Close
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+	db2.LookupUniqueID lItemData
+	vValue(0) = db2.nome
+
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+	db2.LookupUniqueID lItemData
+	position = db2.AbsolutePosition
+
+	fornid = db2.UniqueID
+	nmforn = db2.nome
+	endforn = db2.endereco
+	cidforn = db2.Cidade
+	ufforn = db2.UF
+	foneforn = db2.telefone
+
+	flag = true
+
+End Sub
+
+Private Sub Button1_Click()
+
+		if (flag = false) then
+			MsgBox ("É necessário selecionar um fornecedor na tabela...")
+		else
+			dim mostra as new frmForMost
+			mostra.fornid = fornid
+			mostra.nmforn = nmforn
+			mostra.endforn = endforn
+			mostra.cidforn = cidforn
+			mostra.ufforn = ufforn
+			mostra.foneforn = foneforn
+			mostra.cepforn = db2.cep
+			mostra.emailforn = db2.email
+			mostra.position = position
+			db2.Close
+			mostra.Show hbFormModeless+hbFormGoto
+		end if
+End Sub
+
+
+Private Sub Button2_Click()
+		if (flag = false) then
+			MsgBox ("É necessário selecionar um fornecedor na tabela...")
+		else
+			If MsgBox("Deseja remover esse fornecedor ?",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Baixa")=hbMsgBoxYes then
+				db2.Delete hbRecordRemove
+				db2.close
+				MsgBox "Fornecedor Removido com Sucesso.."
+				Call GoMain
+			End if
+		end if
+End Sub
+
+
+Private Sub Button3_Click()
+	  dim fornecedores as new frmFornecedores
+		fornecedores.Show hbFormModeless+hbformGoto
+End Sub

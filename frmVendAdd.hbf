@@ -1,0 +1,332 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmVendAdd
+  Segment = hb_ext
+  Extends = clsFormMenu
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = "Para Adicionar um produto ao carrinho siga os passos:\r\n\r\n1. Selecione o item a ser vendido na tabela.\r\n\r\n2. Selecione o Cliente na Popup abaixo da tabela.\r\n\r\n3. Ajuste o valor de venda e a quantidade a ser vendida para aquele cliente.\r\n\r\n4. Clique em Adicionar para enviar o produto selecionado para o carrinho.\r\n\r\n- Caso queira voltar para o formulário definitivo de venda, basta clicar em Volta."
+  Locked = False
+  begin Label
+    Name = Label2
+    Left = 1
+    Top = 114
+    Anchors = 0
+    Visible = True
+    Caption = "Cliente:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Popup
+    Name = Popup2
+    Left = 33
+    Top = 114
+    Width = 120
+    Height = 12
+    Anchors = 0
+    Visible = True
+    AnchorLeft = True
+    Text = "popup"
+    Font = "Standard"
+    VisibleItems = 3
+    Sorted = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 2
+    Top = 127
+    Anchors = 0
+    Visible = True
+    Caption = "Valor:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Button
+    Name = btadd
+    Left = 80
+    Top = 142
+    Width = 72
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Adicionar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_volta
+    Left = 3
+    Top = 142
+    Width = 74
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Volta"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Graffiti
+    Name = Graffiti1
+    Left = 148
+    Top = 127
+    Anchors = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label5
+    Left = 76
+    Top = 128
+    Anchors = 0
+    Visible = True
+    Caption = "QTD:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fld_qtd
+    Left = 102
+    Top = 126
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = vlfld
+    Left = 31
+    Top = 126
+    Width = 40
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin GridEx
+    Name = Grid1
+    Left = 1
+    Top = 28
+    Width = 146
+    Height = 81
+    Columns = "AwD8AQUAOQBQAAsAAAAAAAAAAAAoAAMABQA5ACgACwAAAAAAAAAAACgAAwAFADkAKAALAAAAAAAAAAAAKAADAA=="
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 1
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 148
+    Top = 28
+    Width = 7
+    Height = 83
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 8
+    Top = 16
+    Anchors = 0
+    Visible = True
+    Caption = "Produto"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label6
+    Left = 80
+    Top = 15
+    Anchors = 0
+    Visible = True
+    Caption = "QTD"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label7
+    Left = 119
+    Top = 15
+    Anchors = 0
+    Visible = True
+    Caption = "Valor"
+    Font = "Bold"
+    Tag = ""
+  end
+end
+	'Public prodid as Integer
+	Public nmprod as String
+	Public qtprod as Integer
+	Public vlvenda as Double
+	Public db as New estoque
+	Public db3 as New venda_tmp
+	Public vlp as Integer
+	Public qtproddb as Integer
+	Public prod_id as Long
+	Public db2 as New clientes
+
+
+Private Sub Form_Load()
+	Dim cont as Integer
+	'Produtos.
+	db.OpenTable hbModeReadWrite
+	db3.OpenTable hbModeReadOnly
+	db.OpenRecordSet "nmprod Like '*' ORDER BY nmprod ASC",hbModeOpenAlways+hbModeReadWrite
+
+  Grid1.Populate db
+
+	'Fim do popup p/ Produtos..
+	'--------
+	'Inicio do popup p/ clientes..
+	cont = 0
+	while (db3.EOF = false) 'Verificando se já tem produtos
+		db3.MoveNext          'na tabela temp.. se tiver,
+		cont = cont + 1       'não é necessário mostrar os clientes de novo..
+	wend
+
+
+	'MsgBox "Contei "&cont
+	if (cont = 0) Then
+		'MsgBox "Por Favor, não se esqueça de selecionar um cliente.."
+		db2.OpenTable hbModeReadOnly
+		cont = 1
+		if (db2.BOF = true) and (db2.EOF = true) Then
+			MsgBox ("AVISO: Você ainda não Cadastrou nenhum Cliente !!")
+		else
+			Popup2.AddItem "Selecione",0
+			while (db2.EOF = false)
+				Popup2.AddItem db2.nmcliente,cont
+				db2.moveNext
+				cont = cont + 1
+			Wend
+			Popup2.ListIndex=0
+			Popup2.Redraw=True
+		End if
+		db2.Close
+		'Fim do popup p/ clientes
+	 Else
+	 	db2.OpenTable hbModeReadOnly
+	  db3.MoveFirst
+		'db2.LookupUniqueID db3.cliente
+		while (db2.id <> db3.cliente)
+			db2.MoveNext
+		wend
+	 	Popup2.Text = db2.nmcliente
+		db2.Close
+	End If
+	db3.Close
+
+
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+	db.LookupUniqueID lItemData
+
+	vValue(0) = db.nmprod
+	vValue(1) = db.qtprod
+	vValue(2) = db.vlvenda
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+	db.LookupUniqueID lItemData
+
+	vlfld.Text = db.vlvenda
+	fld_qtd.Text = db.qtprod
+	nmprod = db.nmprod
+	qtprod = CInt(fld_qtd.Text)
+	vlvenda = CDbl(vlfld.Text)
+	qtproddb = db.qtprod
+	prod_id = db.prodid
+End Sub
+
+Private Sub bt_volta_Click()
+	dim venda as new frmVenda
+	db.Close
+  venda.Show hbFormModal
+
+End Sub
+
+Private Sub btadd_Click()
+	'dim db as New estoque
+	'TODO: Buscar a informação do produto na tabela estoque:
+	'Valor, Descrição, p/ exibir nesse formulário.
+	'Provavelmente será necessário comparar pelas Strings..
+	'db.Close
+	'db.OpenTable hbModewrite
+
+	if (fld_qtd.Text = "") then
+		MsgBox("Você precisa selecionar um produto na tabela p/ adicioná-lo ao carrinho...")
+	else
+		vlp = CInt(fld_qtd.Text)
+
+		if (vlp > db.qtprod) or (vlp = 0) then
+			MsgBox ("A Quantidade vendida excede a quantidade em estoque ou é igual a zero..")
+		else
+			if (Popup2.Text = "Selecione") then
+				MsgBox("Você deve selecionar um cliente...")
+			else
+				Dim volta as new frmVenda
+
+				db2.OpenRecordset "nmcliente = '" & popup2.Text & "'",hbModeOpenAlways+hbModeReadWrite
+				'MsgBox ("nmcliente id = " &db2.UniqueID)
+				db3.OpenTable hbmodeWrite 'Abrindo a tabela p/ modo de escrita
+				db3.AddNew
+				db.Edit
+				db3.nmprod = nmprod
+				db3.cliente = db2.id 'Trim(Popup2.Text)
+				db3.vlprod  = CDbl(vlfld.Text)
+				db3.qtprod = vlp 'qtprod
+				db3.prodid = prod_id 'Cadastrando o codigo do produto da tabela estoque..
+				'MsgBox ("PRODID: " & db3.cliente)
+				db.qtprod = db.qtprod - vlp  'Atualizando a quantidade no estoque
+				db.Update 'Update no estoque..
+				db3.Update
+
+				'db.Close
+				db3.Close
+				db2.Close
+
+				MsgBox ("Produto adicionado ao Carrinho..")
+				volta.Show hbFormModeless+hbFormGoto
+			end if
+		end if
+	end if
+End Sub

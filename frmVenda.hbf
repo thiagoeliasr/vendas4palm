@@ -1,0 +1,322 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmVenda
+  Segment = hb_ext
+  Extends = Form
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = "Esta é a janela principal de venda, onde é exibido o carrinho. Todos os produtos adicionados e ainda não finalizados, são exibidos nesta janela.\r\nCaso queira adicionar mais um produto a este carrinho, clique no botão ""Adicionar"".\r\nSe desejar remover algum produto do carrinho, selecione-o na tabela, e clique no botão ""Remover"".\r\nPara Cancelar a compra e automaticamente remover todos os produtos do carrinho, basta clicar em ""Limpar"".\r\nPara Finalizar uma venda, clique no botão finalizar.\r\nOBS: Essa operação é definitiva, e após a confirmação não há como inserir mais produtos na venda finalizada.\r\n\r\nPara voltar para o menu principal, clique em ""Voltar""."
+  Locked = False
+  begin GridEx
+    Name = Grid1
+    Left = 3
+    Top = 17
+    Width = 145
+    Height = 88
+    Columns = "AwDwAQUAOQBQAAsAAAAAAAAAAAAoAAMABQA4ACMACgAAAAAAAAAAACgAAwAFADkAIwALAAAAAAAAAAAAKAADAA=="
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 1
+    Tag = ""
+  end
+  begin Button
+    Name = btadd
+    Left = 4
+    Top = 123
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Adicionar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_rem
+    Left = 54
+    Top = 123
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Remover"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_vender
+    Left = 4
+    Top = 139
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Finalizar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_volta
+    Left = 104
+    Top = 139
+    Width = 46
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 54
+    Top = 139
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Limpar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 149
+    Top = 15
+    Width = 7
+    Height = 107
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 39
+    Top = 108
+    Anchors = 0
+    Visible = True
+    Caption = "TOTAL:"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 97
+    Top = 108
+    Anchors = 0
+    Visible = True
+    Caption = "label"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 82
+    Top = 108
+    Anchors = 0
+    Visible = True
+    Caption = "R$"
+    Font = "Standard"
+    Tag = ""
+  end
+end
+Private db1 as new venda_tmp
+'Private db4 as new clientes
+Dim prod_id as Long
+Dim flag as Boolean 'Flag para determinar se o usuario
+                    'selecionou um item na tabela...
+
+Private Sub GoMain()
+  dim f as new frmMain
+	f.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Form_Load()
+	dim cont as Double
+
+	db1.OpenRecordSet ("nmprod Like '*' ORDER BY nmprod ASC"),hbModeOpenAlways+hbModeReadWrite
+  Grid1.Populate db1
+	db1.MoveFirst
+	while (db1.EOF = false) 'Calculando o Valor total do carrinho..
+		cont = cont + (db1.vlprod * db1.qtprod)
+		db1.MoveNext
+	wend
+	Label2.Caption = CStr(cont)
+	flag = false 'Inicializando o flag como falso...
+End Sub
+
+Private Sub btadd_Click()
+	dim venadd as new frmVendAdd
+	dim db as new clientes
+	dim db2 as new estoque
+
+	db2.Close
+	db.Close
+	db.OpenTable hbModeReadOnly
+
+	if (db.BOF = true) and (db.EOF = true) Then
+		MsgBox ("Você ainda não Cadastrou nenhum Cliente !!")
+	else
+		db.Close
+		venadd.Show hbFormModeless+hbFormGoto
+	end if
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+	db1.LookupUniqueID lItemData
+
+	vValue(0) = db1.nmprod
+	vValue(1) = db1.qtprod
+	vValue(2) = db1.vlprod
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+	db1.LookupUniqueID lItemData
+
+	prod_id = Cdbl(db1.prodid)
+	flag = true 'O flag é verdadeiro, pois o usuário selecionou um item na tabela..
+End Sub
+
+Private Sub bt_volta_Click()
+	dim	main as new frmMain
+	db1.Close
+	main.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub bt_rem_Click()
+Dim db2 as new estoque
+
+		'prod_id = CDbl(db2.prodid)
+
+		if (flag = false) then
+			MsgBox("Você precisa selecionar um produto na tabela..")
+		else
+			  If MsgBox("Deseja remover esse Produto do Carrinho ?",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Baixa")=hbMsgBoxYes then
+				db2.OpenTable hbModeReadWrite
+
+				while (db2.prodid <> prod_id)
+					db2.MoveNext
+				wend
+
+				db2.Edit
+				db2.qtprod = db2.qtprod + db1.qtprod
+				db2.Update
+				db2.Close
+
+				db1.Delete hbRecordRemove
+				db1.close
+				MsgBox ("Produto Removido com Sucesso..")
+				Call GoMain
+			End if
+		End if
+End Sub
+
+
+Private Sub Button1_Click()
+Dim di as new DatabaseInfo
+Dim db2 as new estoque
+
+	db2.Close
+
+'Dim db as new estoque
+	if (flag = false) then
+		MsgBox("Você precisa selecionar um produto na tabela..")
+	else
+		If MsgBox("Deseja limpar o Carrinho ?",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Limpar Carrinho")=hbMsgBoxYes then
+			'db1.Close
+			db1.OpenTable hbModeReadWrite
+			while (db1.EOF = false)
+				'Codigo p/ retornar as quantidades p/ o estoque
+				db2.OpenTable hbmodeWrite
+				'db2.LookUpUniqueId db1.prodId 'procura pela ID no estoque
+				while (db2.prodid <> db1.prodid)
+					db1.MoveNext
+				wend
+				db2.Edit 'abrindo p/ edição..
+				db2.qtprod = db2.qtprod + db1.qtprod 'Somando a qtde da tbl do carrinho p/ a tabela do produto
+				db2.Update
+				db2.Close
+				db1.MoveNext
+			wend
+			db1.Close
+
+			if di.FindByName ("VEND_venda_tmp") then
+				di.Delete
+			Else
+				Msgbox ("O carrinho não contem dados...")
+			End if
+			Call GoMain
+		End if
+	End if
+End Sub
+
+Private Sub bt_vender_Click()
+	Dim db3 as new vendas
+	Dim di as new DatabaseInfo
+
+	if ((db1.BOF = true) and (db1.EOF = true)) Then
+		MsgBox("O carrinho está vazio, por favor adicione produtos antes de finalizar a venda...")
+	else
+		If MsgBox("Deseja Realmente finalizar esta venda ?",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Finalizar Venda")=hbMsgBoxYes then
+			'Codigo p/ finalizar a venda..
+			'TODO: Minha idéia é transferir todos os produtos do carrinho
+			'      para a tabela venda, com os dados necessários como a
+			'      data/hora da venda, valores, etc.
+			'      E após fazer a transferência dos dados, limpar o carrinho
+			'      pois a venda já foi concretizada...
+			db1.OpenTable hbModeReadWrite
+			db1.MoveFirst
+
+			while (db1.EOF = false)
+
+				db3.OpenTable hbModeReadWrite
+				db3.AddNew
+				db3.nmprod = db1.nmprod
+				db3.vlprod = db1.vlprod
+				db3.cliente = db1.cliente
+				db3.qtprod = db1.qtprod
+				db3.dt_venda = Date
+				db3.Update
+				db3.Close
+
+				db1.MoveNext
+			wend
+			db1.Close
+			if di.FindByName ("VEND_venda_tmp") then
+		     di.Delete
+			Else
+				Msgbox ("O carrinho não contem dados...")
+			End if
+
+			db1.close
+
+			MsgBox ("A venda foi Finalizada com Sucesso...")
+			Call GoMain
+
+		end if
+	End if
+End Sub

@@ -1,0 +1,276 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmRelAll
+  Segment = hb_ext
+  Extends = Form
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = "Relatório Geral\r\n=============\r\n\r\nTodas os produtos já vendidos são exibidos nesse relatório.\r\n\r\nPara visualizar o detalhe de um determinado produto, selecione-o na tabela e clique em detalhes.\r\n\r\nPara exportar TODOS esses registros para o Memorando, clique em Exportar. \r\nNOTA: Esse processo pode demorar, dependendo do processador de seu dispositivo e da quantidade de registros contidos nessa tabela."
+  Locked = False
+  begin GridEx
+    Name = Grid1
+    Left = 0
+    Top = 25
+    Width = 148
+    Height = 111
+    Columns = "AgB5AQUBOABQAAsAAAAAAAAAAAAoAAMABQA4AEEACgACAAAAAAAAACgAAwA="
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 0
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 149
+    Top = 25
+    Width = 7
+    Height = 112
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 2
+    Top = 142
+    Width = 46
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 52
+    Top = 142
+    Width = 47
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Detalhes"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 1
+    Top = 14
+    Anchors = 0
+    Visible = True
+    Caption = "Produto"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 80
+    Top = 14
+    Anchors = 0
+    Visible = True
+    Caption = "Quantidade"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Button
+    Name = btnexp
+    Left = 103
+    Top = 142
+    Width = 49
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Exportar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin MenuBar
+    begin MenuTitle
+      Caption = "Deletar"
+      begin MenuItem
+        Name = delsel
+        Caption = "Deletar Selecionado..."
+        Shortcut = "D"
+      end
+      begin MenuItem
+        Name = deltudo
+        Caption = "Deletar Todos"
+        Shortcut = "T"
+      end
+    end
+  end
+end
+Private db1 as new vendas
+Public nmprod as String
+Public vlprod as Double
+Public cliente as String
+Public qtprod as Integer
+Public dtvenda as String
+Public flag as Boolean
+Dim linha as Integer
+
+
+Private Sub Button1_Click()
+	dim rel as new frmRel
+  rel.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Form_Load()
+	db1.OpenRecordSet "nmprod Like '*' ORDER BY dt_venda ASC",hbModeOpenAlways+hbModeReadWrite
+  Grid1.Populate db1
+	flag = false
+	linha = 0
+
+'	UIColor(hbUIObjectSelectedFill)=hbColorYellow 'Selection backgroung color.
+'  UIColor(hbUIObjectSelectedForeground )=hbColorBlack 'Selection forground color
+
+
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+  db1.LookupUniqueID lItemData
+
+	vValue(0) = db1.nmprod
+	vValue(1) = db1.qtprod
+
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+'	dim cont as Integer
+
+
+'	cont = 0
+
+	db1.LookupUniqueID lItemData
+	nmprod = db1.nmprod
+	vlprod = db1.vlprod
+	cliente = db1.cliente
+	qtprod = db1.qtprod
+	dtvenda = db1.dt_venda
+	flag = true
+
+'	while (cont < db1.RecordCount-1)
+'		Grid1.ReloadItem cont
+'		cont = cont + 1
+'	wend
+
+End Sub
+
+Private Sub Button2_Click()
+	if (flag = false) Then
+		MsgBox ("Você deve selecionar um produto na tabela..")
+	else
+		dim mostra as new frmRelMost
+		mostra.nmprod = nmprod
+		mostra.cliente = cliente
+		mostra.dtvenda = dtvenda
+		mostra.qtd = qtprod
+		mostra.vlvenda = vlprod
+		mostra.voltar = 1
+		mostra.Show hbFormModeless+hbFormGoto
+	end if
+End Sub
+
+'Private Sub Grid1_DrawItem(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long, ByVal iLeft As Integer, ByVal iTop As Integer, ByVal iWidth As Integer, ByVal iHeight As Integer)
+'	db1.LookupUniqueID lItemData
+'
+' 	If (iRow mod 2) = 0 Then
+'   	Grid1.BackColor = Color(215,255,133)
+' 	 	BackColor = Color(215,255,133)
+' 	Else
+'   	Grid1.BackColor = Color(215,255,255)
+'	 	BackColor = Color(215,255,255)
+' 	End If
+'
+'	if iRow=Grid1.Row+2 then
+'  	DrawFont=hbFontBold
+'	else
+'	  DrawFont=hbFontStandard
+'	End if
+'
+'	TextOut iLeft+1, iTop+3,db1.nmprod
+' 	TextOut iLeft+120, iTop+3,db1.qtprod
+'
+'  Grid1.Rectangle iLeft, iTop, iLeft+iWidth-1, iTop+iHeight-1,hbRectFillSolid
+'End Sub
+
+'Exportação p/ Memorando..
+'Exporta todos os registros da tabela vendas p/ o memo.
+Private Sub btnexp_Click()
+	Dim cMemo as new clsMemo
+	Dim clientes as new clientes
+	Dim n as Long
+
+	clientes.OpenTable hbModeReadOnly
+
+	db1.MoveFirst
+	while (db1.EOF = false)
+		cMemo.OpenDataBase hbModeReadWrite
+		'Encontrando o registro
+		clientes.MoveFirst
+		while (clientes.id <> db1.cliente)
+			clientes.MoveNext
+		wend
+
+		n = cMemo.RecordCount
+		Call cMemo.NewMemo()
+		cMemo.Memo = "Venda "&n&" :: Data: "&db1.dt_venda&"\n\nProduto: "&db1.nmprod&"\nCliente: "&clientes.nmcliente&"\nValor: "&db1.vlprod&"\nQTD: "&db1.qtprod&"\n\nTOTAL: "&db1.vlprod * db1.qtprod
+		Call cMemo.SaveMemo(True)
+		db1.MoveNext
+	wend
+	Call MsgBox("Todos os Produtos foram exportado p/ o Memorando com Sucesso...",hbMsgBoxDoneOnly+hbMsgBoxInformation,"CONCLUIDO")
+
+	clientes.close
+End Sub
+
+Private Sub delsel_Click()
+	if (flag = false) then
+			MsgBox ("É necessário selecionar um item na tabela...")
+		else
+			If MsgBox("Deseja remover esse registro ?",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Remover")=hbMsgBoxYes then
+				db1.Delete hbRecordRemove
+				'db1.close
+				MsgBox "Item Removido com Sucesso.."
+				Grid1.Populate db1
+			End if
+		end if
+End Sub
+
+
+Private Sub deltudo_Click()
+	If MsgBox("Deseja Remover todos os registros ? [Essa operação não pode ser desfeita]",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Remover")=hbMsgBoxYes then
+		db1.MoveFirst
+		while(db1.BOF <> db1.EOF)
+			db1.Delete hbRecordRemove
+			'b1.MoveNext
+		wend
+	End if
+	Grid1.Populate db1
+	MsgBox "Todos os Items foram excluídos com Sucesso;."
+End Sub
+
+
+Private Sub Form_Unload()
+	'db1.Close
+End Sub

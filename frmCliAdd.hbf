@@ -1,0 +1,497 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmCliAdd
+  Segment = main
+  Extends = clsFormMenu
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label2
+    Left = 14
+    Top = 16
+    Anchors = 0
+    Visible = True
+    Caption = "Nome.:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 14
+    Top = 29
+    Anchors = 0
+    Visible = True
+    Caption = "End......:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label4
+    Left = 13
+    Top = 52
+    Anchors = 0
+    Visible = True
+    Caption = "Cidade:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label5
+    Left = 15
+    Top = 89
+    Anchors = 0
+    Visible = True
+    Caption = "Tel......:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = nmcli
+    Left = 48
+    Top = 15
+    Width = 109
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = endcli
+    Left = 48
+    Top = 28
+    Width = 103
+    Height = 24
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 300
+    Align = 0
+    Scrollbar = "Scrollbar2"
+    Tag = ""
+  end
+  begin Field
+    Name = cidcli
+    Left = 48
+    Top = 51
+    Width = 109
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = telcli
+    Left = 46
+    Top = 88
+    Width = 111
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Button
+    Name = bt_cad
+    Left = 3
+    Top = 131
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Cadastrar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_volta
+    Left = 3
+    Top = 146
+    Width = 45
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Graffiti
+    Name = Graffiti1
+    Left = 150
+    Top = 2
+    Anchors = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 30
+    Top = 65
+    Anchors = 0
+    Visible = True
+    Caption = "UF:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Popup
+    Name = Popup1
+    Left = 46
+    Top = 64
+    Width = 52
+    Height = 12
+    Anchors = 0
+    Visible = True
+    AnchorLeft = True
+    Text = "popup"
+    Font = "Standard"
+    VisibleItems = 10
+    Sorted = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label6
+    Left = 65
+    Top = 126
+    Anchors = 0
+    Visible = True
+    Caption = ":: Comentários ::"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Field
+    Name = fldcom
+    Left = 55
+    Top = 135
+    Width = 96
+    Height = 23
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 500
+    Align = 0
+    Scrollbar = "Scrollbar1"
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 153
+    Top = 139
+    Width = 7
+    Height = 21
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Label
+    Name = Label7
+    Left = 45
+    Top = 2
+    Anchors = 0
+    Visible = True
+    Caption = "Cadastro de Clientes"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label8
+    Left = 26
+    Top = 77
+    Anchors = 0
+    Visible = True
+    Caption = "CEP:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldcep
+    Left = 46
+    Top = 76
+    Width = 111
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Label
+    Name = Label9
+    Left = 14
+    Top = 101
+    Anchors = 0
+    Visible = True
+    Caption = "e-mail:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldmail
+    Left = 46
+    Top = 100
+    Width = 111
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar2
+    Left = 153
+    Top = 30
+    Width = 7
+    Height = 24
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Label
+    Name = Label10
+    Left = 2
+    Top = 115
+    Anchors = 0
+    Visible = True
+    Caption = "CPF/CNPJ:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldcnpj
+    Left = 46
+    Top = 113
+    Width = 111
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 14
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin MenuBar
+    begin MenuTitle
+      Caption = "Editar"
+      begin MenuItem
+        Name = mnuCut
+        Caption = "Recortar"
+        Shortcut = "P"
+      end
+      begin MenuItem
+        Name = mnuCopy
+        Caption = "Copiar"
+        Shortcut = "X"
+      end
+      begin MenuItem
+        Name = mnuPaste
+        Caption = "Colar"
+        Shortcut = "C"
+      end
+      begin MenuItem
+        Name = mnuSelect
+        Caption = "Selecionar Tudo"
+        Shortcut = "S"
+      end
+      begin MenuSeparator
+      end
+      begin MenuItem
+        Name = mnuKeyboard
+        Caption = "Teclado Virtual"
+        Shortcut = "K"
+      end
+      begin MenuItem
+        Name = mnuGraffiti
+        Caption = "Ajuda do Graffiti"
+        Shortcut = "G"
+      end
+    end
+  end
+end
+Private Sub Form_Load()
+	Popup1.AddItem "Selecione",0
+	Popup1.AddItem "AC",1
+	Popup1.AddItem "AL",2
+	Popup1.AddItem "AP",3
+	Popup1.AddItem "AM",4
+	Popup1.AddItem "BA",5
+	Popup1.AddItem "CE",6
+	Popup1.AddItem "DF",7
+	Popup1.AddItem "ES",8
+	Popup1.AddItem "GO",9
+	Popup1.AddItem "MA",10
+	Popup1.AddItem "MT",11
+	Popup1.AddItem "MS",12
+	Popup1.AddItem "MG",13
+	Popup1.AddItem "PA",14
+	Popup1.AddItem "PB",15
+	Popup1.AddItem "PR",16
+	Popup1.AddItem "PE",17
+	Popup1.AddItem "PI",18
+	Popup1.AddItem "RJ",19
+	Popup1.AddItem "RN",20
+	Popup1.AddItem "RS",21
+	Popup1.AddItem "RO",22
+	Popup1.AddItem "RR",23
+	Popup1.AddItem "SC",24
+	Popup1.AddItem "SP",25
+	Popup1.AddItem "SE",26
+	Popup1.AddItem "TO",27
+	Popup1.ListIndex=0
+	Popup1.Redraw=True
+End Sub
+
+
+Private Sub bt_cad_Click()
+	Dim db1 as New clientes
+	Dim flag as boolean
+
+	flag = false
+
+	db1.OpenTable hbmodeWrite
+
+	db1.MoveFirst
+	while(db1.eof = false)
+		if (db1.id = Trim(fldcnpj.Text)) then
+			flag = true
+		end if
+		db1.MoveNext
+	wend
+
+	db1.close
+
+
+	if (flag = true) then
+		MsgBox("O CPF/CNPJ já existe no banco de dados..")
+		Set focus = fldcnpj
+	else
+		if (nmcli.Text = "") then
+			MsgBox("Você precisa informar o nome do cliente...")
+		else
+			if (endcli.Text = "") then
+				MsgBox("Você precisa informar o endereço do cliente...")
+			else
+				if (cidcli.Text = "") then
+					MsgBox("O campo cidade não foi preenchido.. corrija para continuar...")
+				else
+					if (Popup1.Text = "Selecione") Then
+						MsgBox("É necessário selecionar o UF..")
+					else
+						if(telcli.Text = "") then
+							MsgBox("O Telefone do cliente não foi preenchido..")
+						else
+							db1.OpenTable hbmodeWrite
+
+							db1.AddNew
+
+							db1.nmcliente = Trim(nmcli.Text)
+							db1.endereco = Trim(endcli.Text)
+							db1.cidade = Trim(cidcli.Text)
+							db1.estado = Trim(Popup1.Text)
+							db1.telefone = Trim(telcli.Text)
+							db1.comentario = Trim(fldcom.Text)
+							db1.cep = Trim(fldcep.Text)
+							db1.email = Trim(fldmail.Text)
+							db1.id = Trim(fldcnpj.Text)
+
+							db1.Update
+							db1.Close
+
+							'MsgBox ""'
+							endcli.Text = ""
+							fldcep.Text = ""
+							fldmail.Text = ""
+							fldcnpj.Text = ""
+							Popup1.Text = "Selecione"
+							cidcli.Text = ""
+							telcli.Text = ""
+							fldcom.Text = ""
+							nmcli.Text = ""
+							MsgBox("Cliente cadastrado com Sucesso")
+							Set Focus = nmcli
+						end if
+					end if
+				end if
+			end if
+		end if
+	end if
+End Sub
+
+Private Sub bt_volta_Click()
+	dim volta as new frmClientes
+	volta.Show hbFormModeless+hbFormGoto
+End Sub

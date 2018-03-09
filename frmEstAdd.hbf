@@ -1,0 +1,351 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmEstAdd
+  Segment = main
+  Extends = clsFormMenu
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 49
+    Top = 1
+    Anchors = 0
+    Visible = True
+    Caption = "Adicionar Produto"
+    Font = "Bold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 3
+    Top = 19
+    Anchors = 0
+    Visible = True
+    Caption = "Nome..:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 2
+    Top = 37
+    Anchors = 0
+    Visible = True
+    Caption = "Qtd......:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label4
+    Left = 3
+    Top = 55
+    Anchors = 0
+    Visible = True
+    Caption = "Dist......:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label5
+    Left = 4
+    Top = 88
+    Anchors = 0
+    Visible = True
+    Caption = "Valor de Venda:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label6
+    Left = 4
+    Top = 106
+    Anchors = 0
+    Visible = True
+    Caption = "Descrição:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = nmprod
+    Left = 38
+    Top = 17
+    Width = 117
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = qtprod
+    Left = 37
+    Top = 35
+    Width = 118
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = vlvenda
+    Left = 70
+    Top = 86
+    Width = 44
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = dsprod
+    Left = 49
+    Top = 107
+    Width = 103
+    Height = 42
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 500
+    Align = 0
+    Scrollbar = "Scrollbar1"
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 152
+    Top = 109
+    Width = 7
+    Height = 42
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 3
+    Top = 121
+    Width = 40
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Inserir"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button2
+    Left = 3
+    Top = 140
+    Width = 40
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Graffiti
+    Name = Graffiti1
+    Left = 150
+    Top = 2
+    Anchors = 0
+    Tag = ""
+  end
+  begin Label
+    Name = Label7
+    Left = 4
+    Top = 72
+    Anchors = 0
+    Visible = True
+    Caption = "VL Compra:"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = vlcompra
+    Left = 70
+    Top = 69
+    Width = 44
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Popup
+    Name = Popup1
+    Left = 38
+    Top = 54
+    Width = 117
+    Height = 12
+    Anchors = 0
+    Visible = True
+    AnchorLeft = True
+    Text = "popup"
+    Font = "Standard"
+    VisibleItems = 7
+    Sorted = 0
+    Tag = ""
+  end
+  begin MenuBar
+    begin MenuTitle
+      Caption = "Editar"
+      begin MenuItem
+        Name = mnuCut
+        Caption = "Recortar"
+        Shortcut = "P"
+      end
+      begin MenuItem
+        Name = mnuCopy
+        Caption = "Copiar"
+        Shortcut = "X"
+      end
+      begin MenuItem
+        Name = mnuPaste
+        Caption = "Colar"
+        Shortcut = "C"
+      end
+      begin MenuItem
+        Name = mnuSelect
+        Caption = "Selecionar Tudo"
+        Shortcut = "S"
+      end
+      begin MenuSeparator
+      end
+      begin MenuItem
+        Name = mnuKeyboard
+        Caption = "Teclado Virtual"
+        Shortcut = "K"
+      end
+      begin MenuItem
+        Name = mnuGraffiti
+        Caption = "Ajuda do Graffiti"
+        Shortcut = "G"
+      end
+    end
+  end
+end
+
+Private Sub Form_Load()
+	Dim db as New Distribuidores
+	Dim cont as integer
+
+	db.OpenTable hbModeReadOnly
+	cont = 1
+	if (db.BOF = true) and (db.EOF = true) Then
+		'dim main as new frmMain
+		MsgBox "AVISO: Você ainda não Cadastrou nenhum Fornecedor !!"
+	else
+		Popup1.AddItem "Selecione",0
+		while (db.EOF = false)
+			Popup1.AddItem db.nome,cont
+			db.moveNext
+			cont = cont + 1
+		Wend
+		Popup1.ListIndex=0
+		Popup1.Redraw=True
+	End if
+
+	db.Close
+End Sub
+
+Private Sub Button1_Click()
+	Dim db2 as New estoque
+	Dim cont as long
+
+	db2.OpenTable hbModeReadWrite
+	'db2.OpenTable hbModeCreateAlways+hbModeWrite
+	'cont = 0
+	if (db2.bof = true and db2.eof = true) then
+		cont = 1
+	else
+		db2.MoveLast
+		cont = db2.prodid + 1
+		'MsgBox("ID: " & cont)
+	end if
+
+	db2.AddNew
+	db2.prodid = CDbl(cont)
+	db2.nmprod = Trim(nmprod.Text)
+	db2.qtprod = Cint(qtprod.Text)
+	db2.distprod = Popup1.Text
+	db2.vlcompra = CDbl(vlcompra.Text)
+	db2.vlvenda = CDbl(vlvenda.Text)
+	db2.descprod = Trim(dsprod.Text)
+
+	db2.Update
+	'MsgBox("IDDB: " &db2.prodid)
+	db2.Close
+
+	MsgBox "Produto Cadastrado com sucesso.."
+	nmprod.Text = ""
+	qtprod.Text = ""
+	vlcompra.Text = ""
+	vlvenda.Text = ""
+	dsprod.Text = ""
+
+	Set Focus = nmprod
+End Sub
+
+
+Private Sub Button2_Click()
+	dim f as new frmEstoque
+	f.Show hbFormGoto+hbFormModeless
+End Sub

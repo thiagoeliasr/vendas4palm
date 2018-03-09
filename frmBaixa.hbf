@@ -1,0 +1,213 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmBaixa
+  Segment = main
+  Extends = Form
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Livros - Baixa"
+  Help = ""
+  Locked = False
+  begin GridEx
+    Name = Grid1
+    Left = 2
+    Top = 17
+    Width = 90
+    Height = 69
+    Columns = "AQDEAAUAOQBQAAsAAAAAAAAAAAAoAAMA"
+    Anchors = 0
+    Visible = True
+    VertScroll = "Scrollbar1"
+    HorzScroll = ""
+    SelectionMode = 0
+    Tag = ""
+  end
+  begin Button
+    Name = bt_deletar
+    Left = 104
+    Top = 20
+    Width = 53
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Dar Baixa"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 94
+    Top = 17
+    Width = 7
+    Height = 69
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+  begin Button
+    Name = bt_back
+    Left = 104
+    Top = 38
+    Width = 53
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Label
+    Name = Label1
+    Left = 4
+    Top = 96
+    Anchors = 0
+    Visible = True
+    Caption = "Título"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 4
+    Top = 111
+    Anchors = 0
+    Visible = True
+    Caption = "Autor"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Label
+    Name = Label3
+    Left = 4
+    Top = 126
+    Anchors = 0
+    Visible = True
+    Caption = "Data de Entrega"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldTitulo
+    Left = 31
+    Top = 94
+    Width = 124
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = fldAutor
+    Left = 30
+    Top = 109
+    Width = 124
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Field
+    Name = fldDtent
+    Left = 73
+    Top = 124
+    Width = 35
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = True
+    Underline = True
+    SingleLine = True
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = ""
+    Tag = ""
+  end
+  begin Graffiti
+    Name = Graffiti1
+    Left = 149
+    Top = 74
+    Anchors = 0
+    Tag = ""
+  end
+end
+Private db As New Table1 ' Replace this by the name of your table
+
+Private Sub GoMain()
+  dim f as new frmMain
+	f.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Form_Load()
+  db.OpenTable hbModeOpenExisting+hbModeReadWrite
+  Grid1.Populate db
+End Sub
+
+Private Sub Form_Unload()
+  db.Close
+End Sub
+
+Private Sub Grid1_LoadItem(ByVal iRow As Integer, ByVal lItemData As Long, ByVal vValue() As Variant)
+  db.LookupUniqueID lItemData
+
+  vValue(0) = db.nmlivro     ' Replace this by the name of field to display in the first column
+
+End Sub
+
+Private Sub Grid1_Click(ByVal iRow As Integer, ByVal iCol As Integer, ByVal lItemData As Long)
+	db.LookupUniqueID lItemData
+	fldTitulo.Text = db.nmlivro
+	fldAutor.Text = db.nmautor
+	fldDtent.Text = db.dtentrega
+End Sub
+
+
+Private Sub bt_deletar_Click()
+	If MsgBox("Deseja Dar Baixa neste Livro ?",hbMsgBoxConfirmation+hbMsgBoxYesNo,"Baixa")=hbMsgBoxYes then
+
+			db.Delete hbRecordRemove
+			db.close
+			MsgBox "Baixa executada com sucesso.."
+			Call GoMain
+	End if
+End Sub
+
+
+Private Sub bt_back_Click()
+	Call GoMain
+End Sub

@@ -1,0 +1,30 @@
+' Peter Holmes Consulting HB++ Class file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Class
+  Name = clsApplication
+  Segment = main
+  Extends = Application
+  Instantiable = True
+  Extendable = False
+  Clonable = False
+end
+' VENDAS 4 PALM
+' Aplicação desenvolvida p/ estudos da linguagem HB++
+' como atividade complementar do curso de Sistemas
+' de informação - UNIUBE [Uberaba - MG]
+' Projeto desenvolvido sob orientação do professor
+' Ernani.
+' ============UNIVERSIDADE DE UBERABA=================
+' | Aluno: Thiago Elias Rezende Silva                |
+' | RA...: 5031810                                   |
+' | Email: a5031810@yahoo.com.br                     |
+' | www..: www.thiagoelias.cjb.net                   |
+' ====================================================
+
+
+Private Sub Application_NormalLaunch()
+  dim f as new frmMain
+	f.Show hbFormModeless+hbFormGoto
+End Sub

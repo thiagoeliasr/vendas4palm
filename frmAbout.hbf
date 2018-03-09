@@ -1,0 +1,95 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmAbout
+  Segment = main
+  Extends = Form
+  Left = 2
+  Top = 2
+  Width = 156
+  Height = 156
+  DIA = 0
+  Modal = True
+  SaveBehind = False
+  Caption = "Sobre Vendas 4 Palm"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 22
+    Top = 15
+    Anchors = 0
+    Visible = True
+    Caption = "Thiago Elias Networks"
+    Font = "LargeBold"
+    Tag = ""
+  end
+  begin Label
+    Name = Label2
+    Left = 34
+    Top = 31
+    Anchors = 0
+    Visible = True
+    Caption = "www.thiagoelias.cjb.net"
+    Font = "Standard"
+    Tag = ""
+  end
+  begin Field
+    Name = fldabout
+    Left = 3
+    Top = 47
+    Width = 145
+    Height = 77
+    Anchors = 0
+    Visible = True
+    Font = "Standard"
+    Editable = False
+    Underline = False
+    SingleLine = False
+    AutoShift = True
+    Numeric = False
+    MaxChar = 80
+    Align = 0
+    Scrollbar = "Scrollbar1"
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 52
+    Top = 139
+    Width = 52
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "OK"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Scrollbar
+    Name = Scrollbar1
+    Left = 149
+    Top = 55
+    Width = 7
+    Height = 70
+    Anchors = 0
+    Visible = True
+    Min = 0
+    Max = 100
+    LargeChange = 10
+    Tag = ""
+  end
+end
+
+Private Sub Form_Load()
+	fldabout.Text = "Projeto desenvolvido por Thiago Elias Rezende Silva como atividade complementar de estudos independentes para a Universidade de Uberaba sob orientação do professor Ernani Claudio Borges de Sistemas de Informação."
+End Sub
+
+
+Private Sub Button1_Click()
+	Dim volta as new frmMain
+	volta.Show hbFormModeless+hbFormGoto
+End Sub

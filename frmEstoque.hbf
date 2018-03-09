@@ -1,0 +1,94 @@
+' Peter Holmes Consulting HB++ Form file
+' Version 1.05.973.1309
+' *** DO NOT EDIT ***
+
+begin Form
+  Name = frmEstoque
+  Segment = main
+  Extends = Form
+  Left = 0
+  Top = 0
+  Width = 160
+  Height = 160
+  DIA = 0
+  Modal = False
+  SaveBehind = False
+  Caption = "Vendas :: Estoque"
+  Help = ""
+  Locked = False
+  begin Label
+    Name = Label1
+    Left = 59
+    Top = 22
+    Anchors = 0
+    Visible = True
+    Caption = "Estoque"
+    Font = "LargeBold"
+    Tag = ""
+  end
+  begin Button
+    Name = bt_add
+    Left = 11
+    Top = 42
+    Width = 139
+    Height = 43
+    Anchors = 0
+    Visible = True
+    Text = "Adicionar produto ao estoque"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = bt_cons
+    Left = 10
+    Top = 91
+    Width = 140
+    Height = 44
+    Anchors = 0
+    Visible = True
+    Text = "Ver produtos no estoque"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+  begin Button
+    Name = Button1
+    Left = 17
+    Top = 144
+    Width = 126
+    Height = 12
+    Anchors = 0
+    Visible = True
+    Text = "Voltar p/ menu principal"
+    Font = "Standard"
+    Frame = 1
+    Repeating = False
+    Tag = ""
+  end
+end
+
+Private Sub bt_add_Click()
+	dim cad as new frmEstAdd
+	Dim db as New Distribuidores
+
+	db.OpenTable hbModeReadOnly
+	if (db.BOF = true) and (db.EOF = true) Then
+		MsgBox "Você ainda não Cadastrou nenhum Fornecedor !!"
+	else
+	  cad.Show hbFormModeless+hbFormGoto
+	end if
+End Sub
+
+
+Private Sub bt_cons_Click()
+	dim ver as new frmEstRem
+  ver.Show hbFormModeless+hbFormGoto
+End Sub
+
+Private Sub Button1_Click()
+	Dim volta as New frmMain
+	volta.Show hbFormModeless+hbFormGoto
+End Sub
