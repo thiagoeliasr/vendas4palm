@@ -2,21 +2,21 @@
 = Changelog =
 
 Thiago Elias Rezende Silva
-a5031810@yahoo.com.br
-www.thiagoelias.cjb.net
+thiago@thiagoelias.org
+https://thiagoelias.org
 
 ===================================
 |LEGENDA:                         |
-|[C] : CORRE«√O                   |
+|[C] : CORRE√á√ÉO                   |
 |[P] : PROBLEMA                   |
-|[I] : IMPLEMENTA«√O              |
-|[OK]: IMPLEMENTA«√O J¡ REALIZADA |
+|[I] : IMPLEMENTA√á√ÉO              |
+|[OK]: IMPLEMENTA√á√ÉO J√Å REALIZADA |
 ===================================
 
 
 
 - 26/02/2005
---> Sistema de adiÁ„o de Clientes ‡ Base de Dados
+--> Sistema de adi√ß√£o de Clientes √† Base de Dados
 --> Forms, data base, etc..
 
 - 02/03/2005
@@ -24,230 +24,230 @@ www.thiagoelias.cjb.net
 --> Forms, ajustes no data base.
 
 - 07/03/2005
---> OrdenaÁ„o dos Resultados de tabelas por Ordem alfabÈtica
+--> Ordena√ß√£o dos Resultados de tabelas por Ordem alfab√©tica
 
 - 04/04/2005
---> foi adicionado no formul·rio de cadastro de produtos, uma Popup, que consulta a tabela Distribuidores,
+--> foi adicionado no formul√°rio de cadastro de produtos, uma Popup, que consulta a tabela Distribuidores,
     e lista todos eles para que o vendedor possa selecionar um p/ a venda.
 
 - 05/04/2005
---> Adicionados formul·rios p/ cadastro de Fornecedores e visualizaÁ„o dos vendedores j· cadastrados.
+--> Adicionados formul√°rios p/ cadastro de Fornecedores e visualiza√ß√£o dos vendedores j√° cadastrados.
 
 - 22/04/2005
---> Adicionado formula·rios p/ venda, mas ainda resta dar funcionalidade a eles.
+--> Adicionado formula√°rios p/ venda, mas ainda resta dar funcionalidade a eles.
 
 -17/05/2005
---> Adicionado funcionalidade ao formul·rio de venda. AS vendas caem na tabela temp,
+--> Adicionado funcionalidade ao formul√°rio de venda. AS vendas caem na tabela temp,
     p/ poderem ser confirmadas na tabela VENDAS
 
 -18/05/2005
---> 1) Foram corrigidos alguns bugs nos dois formul·rios de Vendas, onde quando era 
-    selecionado o bot„o voltar, ele tentava reabrir a tabela (que j· estava aberta)
-    pelo outro formul·rio.
-    A ResoluÁ„o foi simples, bastou chamar a funÁ„o close da tabela sempre que fosse
-    chamar o outro formul·rio.
-    2) Os dois formul·rios de vendas foram alterados p/ Modal, e agora podem exibir
-    uma ajuda, a qual È disponÌvel se clicar o Ìcone (i) no canto superior direito
-    do formul·rio.
+--> 1) Foram corrigidos alguns bugs nos dois formul√°rios de Vendas, onde quando era 
+    selecionado o bot√£o voltar, ele tentava reabrir a tabela (que j√° estava aberta)
+    pelo outro formul√°rio.
+    A Resolu√ß√£o foi simples, bastou chamar a fun√ß√£o close da tabela sempre que fosse
+    chamar o outro formul√°rio.
+    2) Os dois formul√°rios de vendas foram alterados p/ Modal, e agora podem exibir
+    uma ajuda, a qual √© dispon√≠vel se clicar o √≠cone (i) no canto superior direito
+    do formul√°rio.
 
 -27/05/2005
---> 1) CorreÁ„o de falhas existentes no bot„o Limpar do formulario frmVendas.
-    2) AtualizaÁ„o do estoque quando um produto vai p/ a tabela do carrinho.
+--> 1) Corre√ß√£o de falhas existentes no bot√£o Limpar do formulario frmVendas.
+    2) Atualiza√ß√£o do estoque quando um produto vai p/ a tabela do carrinho.
        Desta forma, ele atualiza a quantidade de produtos que ainda resta no estoque.
-    3) Controle sobre a quantidade vendida.. o Vendedor n„o pode vender mais produtos 
+    3) Controle sobre a quantidade vendida.. o Vendedor n√£o pode vender mais produtos 
        do que o estoque tem..
 
 -04/06/2006
---> 1) Feitas as seguintes correÁıes:
-	a) Erros na venda, n„o havia como vender uma quantidade maior que o produto
+--> 1) Feitas as seguintes corre√ß√µes:
+	a) Erros na venda, n√£o havia como vender uma quantidade maior que o produto
            que tivesse a menor quantidade em estoque, pois o sistema sempre verificava
-           o produto que tinha a menor quantidade, e n„o a quantidade de um determinado
+           o produto que tinha a menor quantidade, e n√£o a quantidade de um determinado
            produto.
 
-        b) O bot„o Limpar do formul·rio frmVenda agora remove completamente a tabela
+        b) O bot√£o Limpar do formul√°rio frmVenda agora remove completamente a tabela
 	   vendas_temp e antes disso retorna todas as quantidades para o Estoque.
 	
-	c) O Bot„o remover agora retorna a quantidade para a tabela estoque, assim como
-           o bot„o Limpar.
-    2) Funcionalidade do bot„o finalizar Venda no formul·rio frmVenda. Agora a venda
-       È concretizada com sucesso, sendo todo o conte˙do do carrinho passado para a 
-       tabela vendas, em seguida, o carrinho È limpo para novas vendas.
-    3) Funcionamento Simples do formul·rio frmRel, somente para fins de exibiÁ„o dos
+	c) O Bot√£o remover agora retorna a quantidade para a tabela estoque, assim como
+           o bot√£o Limpar.
+    2) Funcionalidade do bot√£o finalizar Venda no formul√°rio frmVenda. Agora a venda
+       √© concretizada com sucesso, sendo todo o conte√∫do do carrinho passado para a 
+       tabela vendas, em seguida, o carrinho √© limpo para novas vendas.
+    3) Funcionamento Simples do formul√°rio frmRel, somente para fins de exibi√ß√£o dos
        produtos vendidos, e para fins de testes.
-       A vers„o completa do formul·rio frmRel trar· opÁıes necess·rias para geraÁ„o
-       de formul·rios de vendas ordenadas por clientes, datas, etc.
+       A vers√£o completa do formul√°rio frmRel trar√° op√ß√µes necess√°rias para gera√ß√£o
+       de formul√°rios de vendas ordenadas por clientes, datas, etc.
 
 -06/06/2005
---> 1) AdiÁ„o dos formul·rios do relatÛrio, como consulta por datas e consulta geral.
+--> 1) Adi√ß√£o dos formul√°rios do relat√≥rio, como consulta por datas e consulta geral.
        A consulta geral funciona normalmente, e lista todos os produtos vendidos.
-       A Consulta por Datas n„o funciona corretamente ainda, pois n„o est· listando 
-       as vendas no determinado intervalo definido pelo usu·rio.
+       A Consulta por Datas n√£o funciona corretamente ainda, pois n√£o est√° listando 
+       as vendas no determinado intervalo definido pelo usu√°rio.
 
 -07/06/2005
 --> 1) Sistema de consulta por datas corrigido, agora o sistema exibe todas as vendas
-       no intervalo de datas definido pelo usu·rio.
-    2) Adicionado o formul·rio detalhes, o qual exibe as informaÁıes sobre o produto 
+       no intervalo de datas definido pelo usu√°rio.
+    2) Adicionado o formul√°rio detalhes, o qual exibe as informa√ß√µes sobre o produto 
        vendido, como quantidade, valor, o comprador e a data da venda.
-       Este formul·rio È utilizado por todos os formul·rios de RelatÛrio, assim como
-       o relatÛrio de Datas, total e o de clientes, para exibir os detalhes dos produtos
+       Este formul√°rio √© utilizado por todos os formul√°rios de Relat√≥rio, assim como
+       o relat√≥rio de Datas, total e o de clientes, para exibir os detalhes dos produtos
        listados em suas tabelas.
-    3) Criado o formul·rio Vendas por cliente, o qual exibe todos os produtos vendidos para
-       um determinado cliente, que È selecionado em uma Popup.
+    3) Criado o formul√°rio Vendas por cliente, o qual exibe todos os produtos vendidos para
+       um determinado cliente, que √© selecionado em uma Popup.
 
 -08/06/2005
---> 1) CorreÁ„o de Erros na passagem de par‚metros ‡ funÁ„o db.LookupUniqueID dos 
-       formul·rios de RelatÛrio. Quando o usu·rio n„o selecionava nenhum produto na 
-       tabela e clicava em Detalhes, o formulario anterior n„o passava o valor da
-       Unique ID do produto pra funÁ„o, que retornava este erro. Adicionei um Flag,
-       que ser· verdadeiro quando o usu·rio selecionar algo na tabela. Se for falso,
-       o formul·rio n„o ir· passar o par‚metro ‡ funÁ„o e ir· pedir que o usu·rio selecione
+--> 1) Corre√ß√£o de Erros na passagem de par√¢metros √† fun√ß√£o db.LookupUniqueID dos 
+       formul√°rios de Relat√≥rio. Quando o usu√°rio n√£o selecionava nenhum produto na 
+       tabela e clicava em Detalhes, o formulario anterior n√£o passava o valor da
+       Unique ID do produto pra fun√ß√£o, que retornava este erro. Adicionei um Flag,
+       que ser√° verdadeiro quando o usu√°rio selecionar algo na tabela. Se for falso,
+       o formul√°rio n√£o ir√° passar o par√¢metro √† fun√ß√£o e ir√° pedir que o usu√°rio selecione
        um produto.
-    2) Adicionada uma imagem de fundo ao formul·rio frmMain, que poder· ser exibida
+    2) Adicionada uma imagem de fundo ao formul√°rio frmMain, que poder√° ser exibida
        corretamente em dispositivos com 65536 cores. Os dispositivos com cores abaixo desse
-       valor ser„o suportados atravÈs do execut·vel: Vendas-bw.prc, que n„o contem a imagem.
-       RelatÛrio.
+       valor ser√£o suportados atrav√©s do execut√°vel: Vendas-bw.prc, que n√£o contem a imagem.
+       Relat√≥rio.
 
 -30/06/2005
--->    CorreÁ„o [bug fix]:
+-->    Corre√ß√£o [bug fix]:
        1:
-	[P]Quando o usu·rio deletava um cliente da tabela cliente, os produtos vendidos para 
-           esse cliente ficavam no banco de dados, indicando a UniqueID desse cliente que j·
-           n„o mais existia no banco,e quando o formul·rio frmRelMost era chamado, ocorria
-	   um erro de passagem de par‚metros.
-        [C]Agora quando um determinado cliente È removido, todos os produtos vendidos para este
-           cliente tambÈm s„o removidos da tabela Vendas. O meu critÈrio para esta correÁ„o foi
-           baseado no fato de que se um cliente È removido, os dados referentes a ele n„o mais
-           interessam para o usu·rio. [Caso haja pedidos pela outra interpretaÁ„o de que o 
-           usu·rio ainda queira os dados das vendas, mesmo sem o cliente, irei trabalhar para
+	[P]Quando o usu√°rio deletava um cliente da tabela cliente, os produtos vendidos para 
+           esse cliente ficavam no banco de dados, indicando a UniqueID desse cliente que j√°
+           n√£o mais existia no banco,e quando o formul√°rio frmRelMost era chamado, ocorria
+	   um erro de passagem de par√¢metros.
+        [C]Agora quando um determinado cliente √© removido, todos os produtos vendidos para este
+           cliente tamb√©m s√£o removidos da tabela Vendas. O meu crit√©rio para esta corre√ß√£o foi
+           baseado no fato de que se um cliente √© removido, os dados referentes a ele n√£o mais
+           interessam para o usu√°rio. [Caso haja pedidos pela outra interpreta√ß√£o de que o 
+           usu√°rio ainda queira os dados das vendas, mesmo sem o cliente, irei trabalhar para
            permitir os dois casos. 
        2:
-	[P]Quando o usu·rio desejava cadastrar um produto no no estoque e ainda n„o tinha
+	[P]Quando o usu√°rio desejava cadastrar um produto no no estoque e ainda n√£o tinha
            cadastrado nenhum fornecedor, ou iria adicionar algum produto no carrinho, mas
-           n„o tinha nenhum cliente cadastrado, o sistema retornava uma mensagem de aviso
-           que essas pendÍncias ainda n„o estavam resolvidas, mas mesmo assim permitia que
-           o usu·rio tivesse acesso ao formul·rio, causando resultados inesperados ao
+           n√£o tinha nenhum cliente cadastrado, o sistema retornava uma mensagem de aviso
+           que essas pend√™ncias ainda n√£o estavam resolvidas, mas mesmo assim permitia que
+           o usu√°rio tivesse acesso ao formul√°rio, causando resultados inesperados ao
 	   funcionamento do aplicativo.
-	[C]A correÁ„o foi simples, bastou passar o controle do aviso para o formul·rio anterior,
-	   o qual faz o link com o formul·rio onde a popup deve exibir os dados dos clientes ou
-	   fornecedores, fazendo com que o formul·rio seja exibido somente se usu·rios ou fornecedores
+	[C]A corre√ß√£o foi simples, bastou passar o controle do aviso para o formul√°rio anterior,
+	   o qual faz o link com o formul√°rio onde a popup deve exibir os dados dos clientes ou
+	   fornecedores, fazendo com que o formul√°rio seja exibido somente se usu√°rios ou fornecedores
 	   tenham sido cadastrados previamente.
 
 -12/07/2005
---> CorreÁ„o [Bug Fix]:
+--> Corre√ß√£o [Bug Fix]:
        1:
-	[P] Quando o usu·rio mandava cadastrar um produto, mesmo que ele n„o tivesse selecionado nenhum
-            cliente, o sistema cadastrava como cliente "Selecione", o que era um erro considerado gravÌssimo.
-	[C] Uma estrutura condicional foi adicionada para controlar esse tipo de problema, e o usu·rio 
-            sÛ pode adicionar um produto ao carrinho somente se ele tiver selecionado um cliente na Popup.
+	[P] Quando o usu√°rio mandava cadastrar um produto, mesmo que ele n√£o tivesse selecionado nenhum
+            cliente, o sistema cadastrava como cliente "Selecione", o que era um erro considerado grav√≠ssimo.
+	[C] Uma estrutura condicional foi adicionada para controlar esse tipo de problema, e o usu√°rio 
+            s√≥ pode adicionar um produto ao carrinho somente se ele tiver selecionado um cliente na Popup.
        2:
-	[P] Se o usu·rio n„o selecionasse nenhum produto no formul·rio frmVendAdd, e clicasse no bot„o
+	[P] Se o usu√°rio n√£o selecionasse nenhum produto no formul√°rio frmVendAdd, e clicasse no bot√£o
             "Adicionar", o sistema retornava uma mensagem de erro: "Type Mismatch", justamente por estar
 	    tentando converter um valor nulo em inteiro.
 	[C] Novamente o problema foi resolvido com uma estrutura condicional, que verifica se a input do
-	    tipo Edit contem dados ou È nula. Se for nula, retorna a mensagem de erro que ele deve selecionar
-	    um produto na tabela (evitando a chamada ao erro de sistema Type Mismatch), caso contr·rio,
-	    o valor contido na input È convertido para o tipo inteiro e o programa segue em execuÁ„o.
+	    tipo Edit contem dados ou √© nula. Se for nula, retorna a mensagem de erro que ele deve selecionar
+	    um produto na tabela (evitando a chamada ao erro de sistema Type Mismatch), caso contr√°rio,
+	    o valor contido na input √© convertido para o tipo inteiro e o programa segue em execu√ß√£o.
        3:
-	[P] Botıes "Remover", "Limpar" e "Finalizar" apresentavam problemas por falta de condicionais, o
+	[P] Bot√µes "Remover", "Limpar" e "Finalizar" apresentavam problemas por falta de condicionais, o
 	    que poderia causar erros como: Deletar produtos de um carrinho vazio, ou deletar produtos do
-            carrinho que o usu·rio n„o tinha selecionado, ou atÈ mesmo finalizar uma venda com um carrinho
+            carrinho que o usu√°rio n√£o tinha selecionado, ou at√© mesmo finalizar uma venda com um carrinho
 	    vazio.
-	[C] Condicionais foram adicionadas a esses botıes, trazendo um controle maior sobre erros de
+	[C] Condicionais foram adicionadas a esses bot√µes, trazendo um controle maior sobre erros de
 	    cadastro ao banco de dados.
        4:
-	[P] Tabela Clientes n„o oferecia uma quantidade suficientes de atributos, faltava o campo Estado.
-	    [normalmente o campo estado È uma chave estrangeira para uma tabela Estado, mas os estados
-             ser„o listados em uma popup no prÛprio formul·rio, controlando o que o usu·rio ir· digitar,
-	     ent„o n„o achei necess·rio para esse caso a tabela Estado, [apesar de ser a correÁ„o correta
+	[P] Tabela Clientes n√£o oferecia uma quantidade suficientes de atributos, faltava o campo Estado.
+	    [normalmente o campo estado √© uma chave estrangeira para uma tabela Estado, mas os estados
+             ser√£o listados em uma popup no pr√≥prio formul√°rio, controlando o que o usu√°rio ir√° digitar,
+	     ent√£o n√£o achei necess√°rio para esse caso a tabela Estado, [apesar de ser a corre√ß√£o correta
              a se fazer]]
-	[C] Tabela Clientes corrigida, e adicionado os devidos campos no formul·rio frmCliAdd.
+	[C] Tabela Clientes corrigida, e adicionado os devidos campos no formul√°rio frmCliAdd.
 
 -13/07/2005
---> CorreÁ„o / ImplementaÁ„o:
+--> Corre√ß√£o / Implementa√ß√£o:
        1:
-	[P] InconsistÍncia de dados n„o checada, usu·rio podia cadastrar clientes em branco.
-	[C] Adicionadas as condicionais necess·rias para o funcionamento correto..
-	[I] Formul·rio novo para cadastro de clientes, contendo Popup com os Estados brasileiros
-	[I] Novo formul·rio para exibir os detalhes do cliente selecionado.
-	[P] O novo formul·rio ainda n„o tem funcionalidade.
+	[P] Inconsist√™ncia de dados n√£o checada, usu√°rio podia cadastrar clientes em branco.
+	[C] Adicionadas as condicionais necess√°rias para o funcionamento correto..
+	[I] Formul√°rio novo para cadastro de clientes, contendo Popup com os Estados brasileiros
+	[I] Novo formul√°rio para exibir os detalhes do cliente selecionado.
+	[P] O novo formul√°rio ainda n√£o tem funcionalidade.
 
 -14/07/2005
 
---> CorreÁ„o / ImplementaÁ„o:
+--> Corre√ß√£o / Implementa√ß√£o:
        1:
-	[I] Funcionalidade ao formul·rio fmrCliMost. Este formul·rio est· totalmente funcional, e mostra
+	[I] Funcionalidade ao formul√°rio fmrCliMost. Este formul√°rio est√° totalmente funcional, e mostra
 	    os detalhes de um determinado cliente selecionado no form frmCliRem, possibilitando a
-	    alteraÁ„o dos dados cadastrados, assim como os formul·rios semelhantes de estoque e fornecedores.
-	[P] Assim como alguns outros formul·rios corrigidos anteriormente, o form que exibe os fornecedores
-	    cadastrados (frmFornRem) n„o validava se o usu·rio tinha selecionado ou n„o um item na tabela,
-	    exibindo o prÛximo formul·rio sem dados, ou removendo clientes que n„o existiam na tabela fornecedores
-	[C] Foi feito o controle condicional, que define se o usu·rio selecionou ou n„o um item na tabela para que
-	    o sistema possa tomar uma decis„o.
-	[P] O campo UF do formul·rio de cadastro de Fornecedores, e o de exibiÁ„o de fornecedores (frmFornAdd e frmFornMost
-            respectivamente) era do tipo Edit, permitindo que o usu·rio cadastrasse estados inv·lidos..
-	[C] Esses campos foram substituÌdos por Popups, que exibem os estados corretos, assim como foi feito nos forms
+	    altera√ß√£o dos dados cadastrados, assim como os formul√°rios semelhantes de estoque e fornecedores.
+	[P] Assim como alguns outros formul√°rios corrigidos anteriormente, o form que exibe os fornecedores
+	    cadastrados (frmFornRem) n√£o validava se o usu√°rio tinha selecionado ou n√£o um item na tabela,
+	    exibindo o pr√≥ximo formul√°rio sem dados, ou removendo clientes que n√£o existiam na tabela fornecedores
+	[C] Foi feito o controle condicional, que define se o usu√°rio selecionou ou n√£o um item na tabela para que
+	    o sistema possa tomar uma decis√£o.
+	[P] O campo UF do formul√°rio de cadastro de Fornecedores, e o de exibi√ß√£o de fornecedores (frmFornAdd e frmFornMost
+            respectivamente) era do tipo Edit, permitindo que o usu√°rio cadastrasse estados inv√°lidos..
+	[C] Esses campos foram substitu√≠dos por Popups, que exibem os estados corretos, assim como foi feito nos forms
 	    relacionados aos clientes.
 
 -29/07/2005
 
---> CorreÁ„o [Bug Fix]
+--> Corre√ß√£o [Bug Fix]
        1:
-	[P] O usu·rio poderia incluir no carrinho, produtos com quantidade igual a zero, graÁas a um erro
-            que cometÌ ao esquecer de validar se a quantidade em estoque era igual a zero.
+	[P] O usu√°rio poderia incluir no carrinho, produtos com quantidade igual a zero, gra√ßas a um erro
+            que comet√≠ ao esquecer de validar se a quantidade em estoque era igual a zero.
 	[C] Bastou colocar a condicional no local certo, e tudo resolvido no frmVendAdd.
 
 -03/08/2005
---> CorreÁ„o [Bug Fix] / ImplementaÁ„o
+--> Corre√ß√£o [Bug Fix] / Implementa√ß√£o
        1:
-	[P] Os campos de entrada de dados como nome eram pequenos e n„o ofereciam suporte a multiline, ent„o o
-            usu·rio n„o conseguia entrar com endereÁos ou nomes muito grandes, pois o campo n„o suportava.
-	[C] Todos os campos agora tem a propriedade MultiLie = True, o que permite o usu·rio digitar nomes grandes.
+	[P] Os campos de entrada de dados como nome eram pequenos e n√£o ofereciam suporte a multiline, ent√£o o
+            usu√°rio n√£o conseguia entrar com endere√ßos ou nomes muito grandes, pois o campo n√£o suportava.
+	[C] Todos os campos agora tem a propriedade MultiLie = True, o que permite o usu√°rio digitar nomes grandes.
 
        2:
 	[I] Foi implementado ao banco de dados Fornecedores e Clientes, dois campos: CEP e e-mail.
-	    os formul·rios de cadastro e exibiÁ„o tambÈm j· foram alterados para suportar essa modificaÁ„o.
+	    os formul√°rios de cadastro e exibi√ß√£o tamb√©m j√° foram alterados para suportar essa modifica√ß√£o.
 
 -11/08/2005
---> CorreÁ„o [Bug Fix]
+--> Corre√ß√£o [Bug Fix]
        1:
-	[P] Campo de endereÁo pequeno demais.. 
-	[C] Suporte Multi-linhas, permitindo longos endereÁos..
+	[P] Campo de endere√ßo pequeno demais.. 
+	[C] Suporte Multi-linhas, permitindo longos endere√ßos..
 
 -10/09/2005
---> CorreÁ„o [Bug Fix]
+--> Corre√ß√£o [Bug Fix]
        1:
-	[P] O campo UniqueID È incompatÌvel com o Desktop.
-	[I] Foi criado o campo id, que È respons·vel pelo sincronismo do palm com o desktop sem conflitos.
+	[P] O campo UniqueID √© incompat√≠vel com o Desktop.
+	[I] Foi criado o campo id, que √© respons√°vel pelo sincronismo do palm com o desktop sem conflitos.
 
 -13/09/2005
---> CorreÁ„o [Bug Fix]
+--> Corre√ß√£o [Bug Fix]
        1:
-	[P] Alguns campos eram incompativeis com o Unique Id que eu tinha colocado na vers„o Desktop, causando
-            conflito entre as duas versıes das duas plataformas.
-	[I] Implementado o campo CPF/CNPJ no Formul·rio de Clientes, e Implementado o Campo CNPJ em Distribuidores.
-	[C] AlteraÁ„o de todas as tabelas p/ suportar o cpf/cnpj que passou a ser a chave prim·ria das tabelas
-	    clientes e distribuidores, e alteraÁ„o nos formul·rios para n„o referenciar mais a UniqueID quando
+	[P] Alguns campos eram incompativeis com o Unique Id que eu tinha colocado na vers√£o Desktop, causando
+            conflito entre as duas vers√µes das duas plataformas.
+	[I] Implementado o campo CPF/CNPJ no Formul√°rio de Clientes, e Implementado o Campo CNPJ em Distribuidores.
+	[C] Altera√ß√£o de todas as tabelas p/ suportar o cpf/cnpj que passou a ser a chave prim√°ria das tabelas
+	    clientes e distribuidores, e altera√ß√£o nos formul√°rios para n√£o referenciar mais a UniqueID quando
 	    cadastrar dados nas chaves estrangeiras.
 
 -14/09/2005
---> CorreÁ„o [Bug Fix]
+--> Corre√ß√£o [Bug Fix]
        1:
-	[P] Problemas de referÍncia ‡ UniqueID da tabela Estoque.
-	[C] Como n„o h· um tipo de dados como auto-incremento, foi necess·rio fazer uma lÛgica capaz de
-	    realizar esse processo e atualizar o banco de dados a cada inserÁ„o de produtos, assim
+	[P] Problemas de refer√™ncia √† UniqueID da tabela Estoque.
+	[C] Como n√£o h√° um tipo de dados como auto-incremento, foi necess√°rio fazer uma l√≥gica capaz de
+	    realizar esse processo e atualizar o banco de dados a cada inser√ß√£o de produtos, assim
             incrementando o contador no banco.
        2:
-	[P] Com as alteraÁıes no banco de dados, alguns novos problemas surgiram, atrapalhando o funcionamento
-            do sistema, como falta de referÍncia ao cÛdigo dos clientes [j· que o sistema todo utilizada
-            as UniqueID's como chaves prim·rias. ApÛs todas as alteraÁıes restaram alguns problemas como
-	    em detalhes n„o passar o cÛdigo correto de um determinado cliente ou um produto qualquer.
-	[C] Ao invÈs de usar as chamadas lookupUniqueID, onde era bem f·cil saber em qual posiÁ„o estava
-            um produto, criei uma lÛgica prÛpria pra percorrer o banco em busca do dado desejado, uma
-            vez que n„o estou utilizando mais a UniqueID como cÛdigo. a lÛgica È a seguinte:
+	[P] Com as altera√ß√µes no banco de dados, alguns novos problemas surgiram, atrapalhando o funcionamento
+            do sistema, como falta de refer√™ncia ao c√≥digo dos clientes [j√° que o sistema todo utilizada
+            as UniqueID's como chaves prim√°rias. Ap√≥s todas as altera√ß√µes restaram alguns problemas como
+	    em detalhes n√£o passar o c√≥digo correto de um determinado cliente ou um produto qualquer.
+	[C] Ao inv√©s de usar as chamadas lookupUniqueID, onde era bem f√°cil saber em qual posi√ß√£o estava
+            um produto, criei uma l√≥gica pr√≥pria pra percorrer o banco em busca do dado desejado, uma
+            vez que n√£o estou utilizando mais a UniqueID como c√≥digo. a l√≥gica √© a seguinte:
 		
-		banco mova p/ primeira posiÁ„o
-		enquanto codigo no banco for diferente do cÛdigo desejado faÁa
-			banco mova uma posiÁ„o a frente
+		banco mova p/ primeira posi√ß√£o
+		enquanto codigo no banco for diferente do c√≥digo desejado fa√ßa
+			banco mova uma posi√ß√£o a frente
 		fim-enquanto
 
 	    que ficou assim:
@@ -258,66 +258,66 @@ www.thiagoelias.cjb.net
 		wend
 
 -01/10/2005
---> CorreÁ„o [Bug Fix]
+--> Corre√ß√£o [Bug Fix]
        1:
-	[P] Ao cadastrar um cliente, alguns campos n„o eram inicializados com caractere vazio, deixando alguns
+	[P] Ao cadastrar um cliente, alguns campos n√£o eram inicializados com caractere vazio, deixando alguns
             dados do cliente cadastrado na tela.
-	[C] AtribuÌ ‡ propriedade Text desses campos o valor "", que inicializa corretamente o campo.
+	[C] Atribu√≠ √† propriedade Text desses campos o valor "", que inicializa corretamente o campo.
        2:
-	[P] N„o havia como voltar p/ o menu inicial a partir do formul·rio principal de Fornecedores...
-	[C] Foi colocado um bot„o que faz o serviÁo...
+	[P] N√£o havia como voltar p/ o menu inicial a partir do formul√°rio principal de Fornecedores...
+	[C] Foi colocado um bot√£o que faz o servi√ßo...
        3:
-	[P] Bot„o Volta do formul·rio frmFornRem voltava para o menu inicial da aplicaÁ„o [frmMain], enquanto
-            o correto È voltar para o formul·rio anterior.
-	[C] CorreÁıes necess·rias realizadas...
+	[P] Bot√£o Volta do formul√°rio frmFornRem voltava para o menu inicial da aplica√ß√£o [frmMain], enquanto
+            o correto √© voltar para o formul√°rio anterior.
+	[C] Corre√ß√µes necess√°rias realizadas...
 
 -30/11/2005
---> CorreÁ„o [Bug Fix] + ImplementaÁ„o
+--> Corre√ß√£o [Bug Fix] + Implementa√ß√£o
        1:
-	[I]  Implementado os menus de EdiÁ„o: Copiar, colar, recortar, Selecionar Tudo,
+	[I]  Implementado os menus de Edi√ß√£o: Copiar, colar, recortar, Selecionar Tudo,
              Teclado virtual, e ajuda do graffiti.
        2:
-	[P]  Com a nova implementaÁ„o, alguns botıes "Voltar" de alguns formul·rios
+	[P]  Com a nova implementa√ß√£o, alguns bot√µes "Voltar" de alguns formul√°rios
 	     retornavam erros quando eram utilizados. (Variable not Set)
-	[C]  Erro corrigido com a utilizaÁ„o da cl·usula NEW na declaraÁ„o do objeto.
+	[C]  Erro corrigido com a utiliza√ß√£o da cl√°usula NEW na declara√ß√£o do objeto.
 
 -01/12/2005
---> ImplementaÁ„o
+--> Implementa√ß√£o
        1:
-	[I] ImplementaÁ„o da exportaÁ„o dos resultados das tabelas do programa p/ o Memorando,
-	    para que o usu·rio possa acessar os registros das vendas no PC Desktop.
-	    Esse recurso est· disponÌvel no bot„o exportar, que foi implementado nos formul·rios
-	    de RelatÛrio.
+	[I] Implementa√ß√£o da exporta√ß√£o dos resultados das tabelas do programa p/ o Memorando,
+	    para que o usu√°rio possa acessar os registros das vendas no PC Desktop.
+	    Esse recurso est√° dispon√≠vel no bot√£o exportar, que foi implementado nos formul√°rios
+	    de Relat√≥rio.
  
 
 
 
 ===================================
-ImplementaÁıes Previstas Realizadas:
+Implementa√ß√µes Previstas Realizadas:
 
 [OK] >> Melhorar o sistema de cadastro de clientes, assim como o de consulta.
-      - Esta modificaÁ„o ir· alterar tambÈm a tabela clientes.
-[OK] >> Adicionar os campos CPF/CNPJ p/ os formul·rios de Clientes e Fornecedores.
+      - Esta modifica√ß√£o ir√° alterar tamb√©m a tabela clientes.
+[OK] >> Adicionar os campos CPF/CNPJ p/ os formul√°rios de Clientes e Fornecedores.
 
 ===================================
-ImplementaÁıes Previstas n„o Realizadas:
-[  ] >> Fazer validaÁ„o de CPF/CNPJ e adicionar um campo p/ visualizaÁ„o nos formularios de consulta
-
-
-
-
-===================================
-CorreÁıes Previstas Realizadas:
-
-[OK] >> ConsistÍncia dos dados dos formul·rios de cadastro.
-      - O usu·rio n„o poder· cadastrar registros em branco. 
-
+Implementa√ß√µes Previstas n√£o Realizadas:
+[  ] >> Fazer valida√ß√£o de CPF/CNPJ e adicionar um campo p/ visualiza√ß√£o nos formularios de consulta
 
 
 
 
 ===================================
-CorreÁıes Previstas n„o Realizadas:
+Corre√ß√µes Previstas Realizadas:
+
+[OK] >> Consist√™ncia dos dados dos formul√°rios de cadastro.
+      - O usu√°rio n√£o poder√° cadastrar registros em branco. 
+
+
+
+
+
+===================================
+Corre√ß√µes Previstas n√£o Realizadas:
  
    - Erro de Violation Sharing, quando termina de adicionar um produto no carrinho
    e clica em adicionar de novo.
